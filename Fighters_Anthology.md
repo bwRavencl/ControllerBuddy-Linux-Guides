@@ -239,21 +239,18 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
     export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/root/"
     export STEAM_COMPAT_DATA_PATH="$HOME/.local/share/Steam/steamapps/compatdata/$app_id"
 
-    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile  /app/share/ControllerBuddy-Profiles/Fighters_Anthology.json -tray &
+    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/Fighters_Anthology.json -tray &
 
     timeout 10 bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done'
-    exit_code=$?
+    if [ "$?" -eq 124 ]; then
+        zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within 10 seconds.\n\nCheck if your controller is connected." --width 500
+    fi
 
-    if ! "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
+    "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
         "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$app_id" -- \
         "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
         "$HOME/.local/share/Steam/steamapps/common/Proton 9.0 (Beta)/proton" waitforexitandrun \
         "$HOME/.local/share/Steam/steamapps/compatdata/$app_id/pfx/drive_c/JANES/Fighters Anthology/FA.EXE"
-    then
-        if [ $exit_code -eq 124 ]; then
-            zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within 10 seconds.\n\nCheck if your controller is connected." --width 500
-        fi
-    fi
 
     killall -q ControllerBuddy
     ```
