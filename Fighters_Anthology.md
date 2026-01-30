@@ -276,6 +276,6 @@ There is a special ControllerBuddy Steam Input controller layout available which
 | Left Touchpad Click  | Right mouse button |
 | Left Touchpad Y-Axis | Scroll up/down     |
 
-To this the layout:
-1. Click [here](steam://controllerconfig/25189661165/3605812061) to obtain the controller layout.
+To use this the layout:
+1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
 2. Apply the layout to both **Jane's Fighters Anthology** shortcuts in your Steam library.
