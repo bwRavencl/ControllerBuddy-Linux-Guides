@@ -66,12 +66,12 @@ echo "setup.exe located at: $CDROM_DIR/setup.exe"
 10. Extract the `FAno-cd.zip` no-disc patch to your Fighters Anthology installation directory:
     ```sh
     cd $(xdg-user-dir DOWNLOAD) &&
-    unzip -o FAno-cd.zip -x README.txt -d "/home/$USER/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/JANES/Fighters Anthology"
+    unzip -o FAno-cd.zip -x README.txt -d "$HOME/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/JANES/Fighters Anthology"
     ```
 
 11. Replace the fake `fa_7.lib` of the no-disc patch with `fa_7.lib` from the disc image:
     ```sh
-    cp "$CDROM_DIR/fa_7.lib" "/home/$USER/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/JANES/Fighters Anthology/"
+    cp "$CDROM_DIR/fa_7.lib" "$HOME/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/JANES/Fighters Anthology/"
     ```
 
 > [!IMPORTANT]
