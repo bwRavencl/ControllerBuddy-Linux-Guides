@@ -12,7 +12,8 @@ Although the guides are designed to be as straightforward as possible, they assu
 ## 📚 Guides
 
 - [DCS World](DCS_World.md)
-- [Falcon 3.0](3.0.md)
+- [EF2000 V2.0](EF2000_V2.0.md)
+- [Falcon 3.0](Falcon_3.0.md)
 - [Falcon BMS](Falcon_BMS.md)
 - [Jane's Fighters Anthology](Fighters_Anthology.md)
 - [IL-2 1946](IL-2_1946.md)
