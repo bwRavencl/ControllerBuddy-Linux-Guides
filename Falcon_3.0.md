@@ -1,4 +1,4 @@
-# Falcon 3.0 ControllerBuddy on Linux
+# Falcon 3.0 with ControllerBuddy on Linux
 
 ## 📖 Description
 
@@ -11,9 +11,9 @@ What you get with this setup:
 ## 🧩 Prerequisites
 
 - [Steam](https://steampowered.com/) (distribution package)
-- [Falcon Gold Steam Release](https://store.steampowered.com/app/429520/Falcon_Gold)
 - [DOSBox Staging Flatpak](https://flathub.org/en/apps/io.github.dosbox-staging)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
+- [Falcon Gold Steam Release](https://store.steampowered.com/app/429520/Falcon_Gold)
 
 ## 🪜 Steps
 
