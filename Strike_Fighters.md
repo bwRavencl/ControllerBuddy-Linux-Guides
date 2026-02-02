@@ -167,7 +167,7 @@ What you get with this setup:
 9. Configure the game to work with the `Strike_Fighters.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
     ```sh
     controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
-    cp "$controller_buddy_profiles_dir/configs/Strike_Fighters/Default.ini" "$HOME/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/<GAME_FOLDER>/Controls/Default.ini"
+    cp "$controller_buddy_profiles_dir/configs/Strike_Fighters/Default.ini" "$HOME/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/<GAME_FOLDER>/Controls/"
     ```
 
 10. Update the Steam shortcut as follows:
@@ -223,7 +223,7 @@ To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mo
     ```sh
     chmod +x "$HOME/launch_strike_fighters.sh"
     ```
-4. Add the script as a Non-Steam game in your Steam library.
+4. Add the script as a Non-Steam game to your Steam library.
 5. Rename the **launch_strike_fighters.sh** Steam shortcut to **Strike Fighters (Gaming Mode)**.
 
 > [!IMPORTANT]
@@ -242,4 +242,4 @@ There is a special ControllerBuddy Steam Input controller layout available which
 
 To use this the layout:
 1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
-2. Apply the layout to both **Strike Fighters** shortcuts in your Steam library.
+2. Apply the layout to both **Strike Fighters** shortcuts to your Steam library.

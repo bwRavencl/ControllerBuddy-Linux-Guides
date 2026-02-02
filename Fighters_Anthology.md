@@ -259,7 +259,7 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
     ```sh
     chmod +x "$HOME/launch_fighters_anthology.sh"
     ```
-4. Add the script as a Non-Steam game in your Steam library.
+4. Add the script as a Non-Steam game to your Steam library.
 5. Rename the **launch_fighters_anthology.sh** Steam shortcut to **Jane's Fighters Anthology (Gaming Mode)**.
 
 > [!IMPORTANT]
@@ -278,4 +278,4 @@ There is a special ControllerBuddy Steam Input controller layout available which
 
 To use this the layout:
 1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
-2. Apply the layout to both **Jane's Fighters Anthology** shortcuts in your Steam library.
+2. Apply the layout to both **Jane's Fighters Anthology** shortcuts to your Steam library.
