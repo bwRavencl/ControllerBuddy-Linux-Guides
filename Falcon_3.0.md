@@ -29,7 +29,7 @@ What you get with this setup:
     ```
 4. Create the DOSBox config file.
     ```sh
-    cat << EOF > "$HOME/Falcon_Gold/dosbox_falcon_gold.conf"
+    cat << 'EOF' > "$HOME/Falcon_Gold/dosbox_falcon_gold.conf"
     [sdl]
     fullscreen = true
 
@@ -70,7 +70,7 @@ What you get with this setup:
     ```
 5. Create the launch script.
     ```sh
-    cat << EOF > "$HOME/Falcon_Gold/Falcon_Gold.sh"
+    cat << 'EOF' > "$HOME/Falcon_Gold/Falcon_Gold.sh"
     #!/bin/bash
 
     CB_PROFILE=Falcon_3.0.json
