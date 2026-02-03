@@ -83,7 +83,9 @@ echo "setup.exe located at: $CDROM_DIR/setup.exe"
     rm -rf "$CDROM_DIR"
     ```
 
-12. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
+13. Make sure all your game controllers are connected.
+
+14. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
     ```sh
     reg_file=$(mktemp joysticks-XXXX.reg) &&
     python3 - <<'EOF' "$reg_file" &&
@@ -206,7 +208,7 @@ echo "setup.exe located at: $CDROM_DIR/setup.exe"
 > | `<USER>`    | Your username                                   |
 > | `<APP_ID>`  | The Proton prefix **APP ID** obtained in step 6 |
 
-13. Update the **Jane's Fighters Anthology** Steam shortcut as follows:
+15. Update the **Jane's Fighters Anthology** Steam shortcut as follows:
 
     **TARGET**:
     ```
@@ -278,4 +280,4 @@ There is a special ControllerBuddy Steam Input controller layout available which
 
 To use this the layout:
 1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
-2. Apply the layout to both **Jane's Fighters Anthology** shortcuts to your Steam library.
+2. Apply the layout to both **Jane's Fighters Anthology** shortcuts in your Steam library.

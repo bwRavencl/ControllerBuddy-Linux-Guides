@@ -39,7 +39,9 @@ What you get with this setup:
     flatpak run com.github.Matoking.protontricks "$APP_ID" directplay
     ```
 
-8. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
+8. Make sure all your game controllers are connected.
+
+9. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
     ```sh
     reg_file=$(mktemp joysticks-XXXX.reg) &&
     python3 - <<'EOF' "$reg_file" &&
@@ -164,13 +166,13 @@ What you get with this setup:
 > | `<GAME_FOLDER>` | The path to the game's installation folder      |
 > | `<EXE>`         | The game's executable name                      |
 
-9. Configure the game to work with the `Strike_Fighters.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+10. Configure the game to work with the `Strike_Fighters.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
     ```sh
     controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
     cp "$controller_buddy_profiles_dir/configs/Strike_Fighters/Default.ini" "$HOME/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/<GAME_FOLDER>/Controls/"
     ```
 
-10. Update the Steam shortcut as follows:
+11. Update the Steam shortcut as follows:
 
     **TARGET**:
     ```

@@ -2,7 +2,7 @@
 
 ## 📖 Description
 
-This guide describes the setup of [Falcon 3.0](https://en.wikipedia.org/wiki/Falcon_3.0) for use with [ControllerBuddy](https://controllerbuddy.org/) on Linux via the [DOSBox Staging](https://www.dosbox-staging.org) emulator.
+This guide describes the setup of [Falcon 3.0](https://en.wikipedia.org/wiki/Falcon_3.0) (Steam) for use with [ControllerBuddy](https://controllerbuddy.org/) on Linux via the [DOSBox Staging](https://www.dosbox-staging.org) emulator.
 
 What you get with this setup:
 - An installation of Falcon 3.0 that is nicely integrated into your Steam library.

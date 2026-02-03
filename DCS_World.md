@@ -21,10 +21,15 @@ What you get with this setup:
 ## 🪜 Steps
 
 1. Download the DCS World installer (`DCS_World_web.exe`) from [here](https://www.digitalcombatsimulator.com/en/downloads/world/stable/).
+
 2. Add `DCS_World_web.exe` as a Non-Steam game.
+
 3. Rename the **DCS_World_web.exe** Steam shortcut to **DCS World**.
+
 4. Select **GE-Proton-10-27** as the compatibility tool.
+
 5. Launch the **DCS World** Steam shortcut and install DCS.
+
 6. Obtain the `APP_ID` of the Proton prefix:
     ```sh
     export APP_ID=$(flatpak run com.github.Matoking.protontricks -l \
@@ -41,7 +46,9 @@ What you get with this setup:
     ```sh
     flatpak run com.github.Matoking.protontricks "$APP_ID" d3dcompiler_47 vcrun2022
     ```
+
 8. Make sure all your game controllers are connected.
+
 9. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
     ```sh
     reg_file=$(mktemp joysticks-XXXX.reg) &&
@@ -157,6 +164,7 @@ What you get with this setup:
     flatpak run com.github.Matoking.protontricks -c "wine reg import '$reg_file'" "$APP_ID"
     rm -f "$reg_file"
     ```
+
 10. Install `SEGUISYM.TTF` into the Proton prefix:
     ```sh
     cd "~/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/windows/Fonts" &&
@@ -186,7 +194,9 @@ What you get with this setup:
     ```sh
     ${STEAM_RUNTIME}/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -tray & timeout 10 bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && override_vram_size=8192 CONTROLLER_BUDDY_PROFILES_DIR=/app/share/ControllerBuddy-Profiles WINE_SIMULATE_WRITECOPY=1 WINEDLLOVERRIDES='wbemprox=n' %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within 10 seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
     ```
+
 12. Launch the **DCS World** Steam shortcut to download and install your modules.
+
 13. Convert the `DCS-1.ico` file to `.png`:
     ```sh
     ICONS_DIR="$(xdg-user-dir PICTURES)/Icons"
@@ -194,7 +204,9 @@ What you get with this setup:
     mkdir -p "$ICONS_DIR" &&
     magick DCS-1.ico "$ICONS_DIR/DCS_World.png"
     ```
+
 14. Edit the **DCS World** Steam shortcut and select `/home/<USER>/<PICTURES_DIR>/Icons/DCS_World.png` as the icon.
+
 15. Install [PowerShell 7+](https://github.com/PowerShell/PowerShell) into the Proton prefix:
     ```sh
     msi_file=$(mktemp -u PowerShell-XXXX.msi) &&
@@ -202,17 +214,21 @@ What you get with this setup:
     flatpak run com.github.Matoking.protontricks -c "wine msiexec /i '$msi_file'" "$APP_ID"
     rm -f "$msi_file"
     ```
+
 16. Set up [ControllerBuddy-DCS-Integration](https://github.com/bwRavencl/ControllerBuddy-DCS-Integration):
     ```sh
     scripts_dir="~/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/users/steamuser/Saved\ Games/DCS/Scripts" &&
     git clone https://github.com/bwRavencl/ControllerBuddy-DCS-Integration.git "$scripts_dir/ControllerBuddy-DCS-Integration" &&
     echo 'dofile(lfs.writedir()..[[Scripts\ControllerBuddy-DCS-Integration\ControllerBuddy.lua]])' > "$scripts_dir/Export.lua"
     ```
+
 17. Make sure your game controller is still connected.
+
 18. Launch ControllerBuddy, and start local run mode to initialize the UINPUT joystick device:
     ```sh
     flatpak run de.bwravencl.ControllerBuddy -autostart local &
     ```
+
 19. Configure DCS to work with the [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
     ```sh
     controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
@@ -222,16 +238,18 @@ What you get with this setup:
 
 ## 🔄 Re-running the Configuration Script
 
-The configuration script must be run again whenever the ControllerBuddy-Profiles receive an update.  
-To do so, execute the following command (steps 6, 18, and 19 combined):
+The configuration script must be run again whenever the ControllerBuddy-Profiles receive an update.
 
-```sh
-export APP_ID=$(flatpak run com.github.Matoking.protontricks -l \
-    | grep '^Non-Steam shortcut: DCS World ([0-9]\+)$' \
-    | sed -E 's/.*\(([0-9]+)\).*/\1/' \
-    | head -n1)
-flatpak run de.bwravencl.ControllerBuddy -autostart local &
-controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
-cd "$controller_buddy_profiles_dir/configs/DCS" &&
-WINEDEBUG='-all' flatpak run --filesystem="$controller_buddy_profiles_dir" com.github.Matoking.protontricks -c 'wine pwsh Configure.ps1' "$APP_ID"
-```
+1. Make sure your game controller is connected.
+
+2. Execute the following command (steps 6, 18, and 19 combined):
+    ```sh
+    export APP_ID=$(flatpak run com.github.Matoking.protontricks -l \
+        | grep '^Non-Steam shortcut: DCS World ([0-9]\+)$' \
+        | sed -E 's/.*\(([0-9]+)\).*/\1/' \
+        | head -n1)
+    flatpak run de.bwravencl.ControllerBuddy -autostart local &
+    controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
+    cd "$controller_buddy_profiles_dir/configs/DCS" &&
+    WINEDEBUG='-all' flatpak run --filesystem="$controller_buddy_profiles_dir" com.github.Matoking.protontricks -c 'wine pwsh Configure.ps1' "$APP_ID"
+    ```
