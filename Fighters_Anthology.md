@@ -231,7 +231,7 @@ echo "setup.exe located at: $CDROM_DIR/setup.exe"
 
 To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created. If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
-1. Create a new script file `launch_fighters_anthology.sh` in your home directory with the following content:
+1. Create a new script file `Fighters_Anthology.sh` in your home directory with the following content:
     ```bash
     #!/bin/bash
 
@@ -259,10 +259,10 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
 2. Replace the placeholder `<APP_ID>` in the script with the actual **APP ID** obtained in step 6 of the main guide.
 3. Make the script executable:
     ```sh
-    chmod +x "$HOME/launch_fighters_anthology.sh"
+    chmod +x "$HOME/Fighters_Anthology.sh"
     ```
 4. Add the script as a Non-Steam game to your Steam library.
-5. Rename the **launch_fighters_anthology.sh** Steam shortcut to **Jane's Fighters Anthology (Gaming Mode)**.
+5. Rename the **Fighters_Anthology.sh** Steam shortcut to **Jane's Fighters Anthology (Gaming Mode)**.
 
 > [!IMPORTANT]
 > The other Steam shortcut must not be deleted, as this would also delete the Proton prefix.

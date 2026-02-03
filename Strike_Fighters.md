@@ -195,7 +195,7 @@ What you get with this setup:
 
 To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created. If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
-1. Create a new script file `launch_strike_fighters.sh` in your home directory with the following content:
+1. Create a new script file `Strike_Fighters.sh` in your home directory with the following content:
     ```bash
     #!/bin/bash
 
@@ -220,13 +220,13 @@ To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mo
 
     killall -q ControllerBuddy
     ```
-2. Replace the placeholder `<APP_ID>` in the script with the actual **APP ID** obtained in step 6 of the main guide.
+2. Replace the placeholder `<APP_ID>` in the script with the actual **APP ID** obtained in step 5 of the main guide.
 3. Make the script executable:
     ```sh
-    chmod +x "$HOME/launch_strike_fighters.sh"
+    chmod +x "$HOME/Strike_Fighters.sh"
     ```
 4. Add the script as a Non-Steam game to your Steam library.
-5. Rename the **launch_strike_fighters.sh** Steam shortcut to **Strike Fighters (Gaming Mode)**.
+5. Rename the **Strike_Fighters.sh** Steam shortcut to **Strike Fighters (Gaming Mode)**.
 
 > [!IMPORTANT]
 > The other Steam shortcut must not be deleted, as this would also delete the Proton prefix.
