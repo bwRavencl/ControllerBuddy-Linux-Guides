@@ -66,6 +66,7 @@ What you get with this setup:
     cls
     FALCONCD.EXE
     exit
+
     EOF
     ```
 5. Create the launch script.
