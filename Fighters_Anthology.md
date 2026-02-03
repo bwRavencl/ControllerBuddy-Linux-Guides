@@ -29,7 +29,7 @@ echo "setup.exe located at: $CDROM_DIR/setup.exe"
 
 2. Add `setup.exe` as a Non-Steam game
 3. Rename the **setup.exe** Steam shortcut to **Jane's Fighters Anthology**.
-4. Select **Proton 9.0-4** as the compatibility tool.
+4. Select **Proton 9.0-4** as compatibility tool.
 5. Launch the **Jane's Fighters Anthology** Steam shortcut and install Fighters Anthology.  
     During the setup, select "Full Install - Digital Music".
 6. Obtain the `APP_ID` of the Proton prefix:

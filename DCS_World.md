@@ -26,7 +26,7 @@ What you get with this setup:
 
 3. Rename the **DCS_World_web.exe** Steam shortcut to **DCS World**.
 
-4. Select **GE-Proton-10-27** as the compatibility tool.
+4. Select **GE-Proton-10-27** as compatibility tool.
 
 5. Launch the **DCS World** Steam shortcut and install DCS.
 

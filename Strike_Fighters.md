@@ -19,7 +19,7 @@ What you get with this setup:
 
 1. Add `Setup.exe` as a Non-Steam game.
 2. Rename the **setup.exe** Steam shortcut to **Strike Fighters**, **Wings Over Vietnam**, **Wings Over Europe**, or **Wings Over Israel** accordingly.
-3. Select **Proton 9.0-4** as the compatibility tool.
+3. Select **Proton 9.0-4** as compatibility tool.
 4. Launch the game Steam shortcut and install the game.
 5. Obtain the `APP_ID` of the Proton prefix:
     ```sh
