@@ -108,6 +108,8 @@ What you get with this setup:
     flatpak run io.github.dosbox-staging -conf "$DOSBOX_CONF"
 
     quit_cb
+
+    EOF
     ```
 6. Add the launch script (`$HOME/Falcon_Gold/Falcon_Gold.sh`) as a Non-Steam game to your Steam library.
 7. Rename the **Falcon_Gold.sh** Steam shortcut to **Falcon Gold (ControllerBuddy)**.
