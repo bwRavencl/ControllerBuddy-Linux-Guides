@@ -6,7 +6,7 @@ This guide describes the installation of [DCS World](https://www.digitalcombatsi
 
 What you get with this setup:
 - A standalone installation of DCS World that is nicely integrated into your Steam library and configured for use with ControllerBuddy.
-- ControllerBuddy will start automatically when you start the game and exit after you exit the game.
+- ControllerBuddy will start automatically when you start the game and exit when you quit the game.
 - When switching aircraft in DCS, ControllerBuddy will automatically load the corresponding profile.
 
 ## 🧩 Prerequisites
@@ -28,7 +28,7 @@ What you get with this setup:
 
 4. Select **GE-Proton-10-27** as compatibility tool.
 
-5. Launch the **DCS World** Steam shortcut and install DCS.
+5. Launch the **DCS World** Steam shortcut and install DCS World.
 
 6. Obtain the `APP_ID` of the Proton prefix:
     ```sh

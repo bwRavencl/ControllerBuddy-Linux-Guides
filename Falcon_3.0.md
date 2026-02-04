@@ -6,7 +6,7 @@ This guide describes the setup of [Falcon 3.0](https://en.wikipedia.org/wiki/Fal
 
 What you get with this setup:
 - An installation of Falcon 3.0 that is nicely integrated into your Steam library.
-- ControllerBuddy will start automatically when you start the game, load the correct profile, and exit after you exit the game.
+- ControllerBuddy will start automatically when you start the game, load the correct profile, and exit when you quit the game.
 
 ## 🧩 Prerequisites
 
@@ -128,6 +128,6 @@ There is a special ControllerBuddy Steam Input controller layout available which
 | Left Touchpad Click  | Right mouse button |
 | Left Touchpad Y-Axis | Scroll up/down     |
 
-To use this the layout:
+To use this layout:
 1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
-2. Apply the layout to both **Jane's Fighters Anthology** shortcuts to your Steam library.
+2. Apply the layout to the **Falcon Gold (ControllerBuddy)** shortcut in your Steam library.

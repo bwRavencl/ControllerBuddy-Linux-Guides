@@ -6,7 +6,7 @@ This guide describes the installation of Strike Fighters, Wings Over Vietnam, Wi
 
 What you get with this setup:
 - An installation of your chosen game that is nicely integrated into your Steam library.
-- ControllerBuddy will start automatically when you start the game, load the correct profile, and exit after you exit the game.
+- ControllerBuddy will start automatically when you start the game, load the correct profile, and exit when you quit the game.
 
 ## 🧩 Prerequisites
 
@@ -242,6 +242,6 @@ There is a special ControllerBuddy Steam Input controller layout available which
 | Left Touchpad Click  | Right mouse button |
 | Left Touchpad Y-Axis | Scroll up/down     |
 
-To use this the layout:
+To use this layout:
 1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
-2. Apply the layout to both **Strike Fighters** shortcuts to your Steam library.
+2. Apply the layout to both **Strike Fighters** shortcuts in your Steam library.

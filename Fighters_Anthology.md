@@ -6,7 +6,7 @@ This guide describes the installation of [Jane's Fighters Anthology](https://en.
 
 What you get with this setup:
 - An installation of Jane's Fighters Anthology that is nicely integrated into your Steam library.
-- ControllerBuddy will start automatically when you start the game, load the correct profile, and exit after you exit the game.
+- ControllerBuddy will start automatically when you start the game, load the correct profile, and exit when you quit the game.
 
 ## 🧩 Prerequisites
 
@@ -30,7 +30,7 @@ echo "setup.exe located at: $CDROM_DIR/setup.exe"
 2. Add `setup.exe` as a Non-Steam game
 3. Rename the **setup.exe** Steam shortcut to **Jane's Fighters Anthology**.
 4. Select **Proton 9.0-4** as compatibility tool.
-5. Launch the **Jane's Fighters Anthology** Steam shortcut and install Fighters Anthology.  
+5. Launch the **Jane's Fighters Anthology** Steam shortcut and install Jane's Fighters Anthology.  
     During the setup, select "Full Install - Digital Music".
 6. Obtain the `APP_ID` of the Proton prefix:
     ```sh
@@ -44,7 +44,7 @@ echo "setup.exe located at: $CDROM_DIR/setup.exe"
 > [!IMPORTANT]
 > All subsequent commands must be executed within the same shell session to retain the `APP_ID` environment variable.
 
-7. Download the `fae102.exe` with your browser:
+7. Download `fae102.exe` with your browser:
     ```sh
     xdg-open https://jkpeterson.net/fa/misc/fae102.exe &
     ```
@@ -286,6 +286,6 @@ There is a special ControllerBuddy Steam Input controller layout available which
 | Left Touchpad Click  | Right mouse button |
 | Left Touchpad Y-Axis | Scroll up/down     |
 
-To use this the layout:
+To use this layout:
 1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
 2. Apply the layout to both **Jane's Fighters Anthology** shortcuts in your Steam library.
