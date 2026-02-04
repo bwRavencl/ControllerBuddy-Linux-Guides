@@ -225,6 +225,14 @@ echo "setup.exe located at: $CDROM_DIR/setup.exe"
     ${STEAM_RUNTIME}/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/Fighters_Anthology.json -tray & timeout 10 bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within 10 seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
     ```
 
+16. Launch the **Jane's Fighters Anthology** Steam shortcut and configure the controls according to the screenshots:
+
+    ![Joystick](https://github.com/bwRavencl/ControllerBuddy-Profiles/raw/50ee366f48afca39497791a1b7b297a836ca7aaf/configs/Fighters_Anthology/joystick.png)
+
+    ![Rudder](https://github.com/bwRavencl/ControllerBuddy-Profiles/raw/50ee366f48afca39497791a1b7b297a836ca7aaf/configs/Fighters_Anthology/rudder.png)
+
+    ![Throttle](https://github.com/bwRavencl/ControllerBuddy-Profiles/raw/50ee366f48afca39497791a1b7b297a836ca7aaf/configs/Fighters_Anthology/throttle.png)
+
 ## 🎮 Steam Deck Specifics
 
 ### Launching from Gaming Mode
