@@ -2,12 +2,12 @@
 
 ## 📖 Description
 
-This repository contains step-by-step guides for setting up various flight simulation games for use with [ControllerBuddy](https://controllerbuddy.org/) on Linux.
+This repository contains step-by-step guides for setting up various flight simulation games for use with [ControllerBuddy](https://controllerbuddy.org) on Linux.
 
 These guides are intended to help users set up their flight simulators to work with ControllerBuddy and integrate seamlessly into a Steam-based gaming experience on Linux systems, including the [SteamDeck](https://www.steamdeck.com).  
 This includes automatically launching and stopping ControllerBuddy alongside the respective game from within Steam.
 
-Although the guides are designed to be as straightforward as possible, they assume a basic familiarity with Linux command-line operations and the use of [Flatpak](https://flatpak.org/) applications.
+Although the guides are designed to be as straightforward as possible, they assume a basic familiarity with Linux command-line operations and the use of [Flatpak](https://flatpak.org) applications.
 
 ## 📚 Guides
 

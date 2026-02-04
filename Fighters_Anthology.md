@@ -2,7 +2,7 @@
 
 ## 📖 Description
 
-This guide describes the installation of [Jane's Fighters Anthology](https://en.wikipedia.org/wiki/Fighters_Anthology) for use with [ControllerBuddy](https://controllerbuddy.org/) on Linux via the [Proton](https://github.com/ValveSoftware/Proton) compatibility layer.
+This guide describes the installation of [Jane's Fighters Anthology](https://en.wikipedia.org/wiki/Fighters_Anthology) for use with [ControllerBuddy](https://controllerbuddy.org) on Linux via the [Proton](https://github.com/ValveSoftware/Proton) compatibility layer.
 
 What you get with this setup:
 - An installation of Jane's Fighters Anthology that is nicely integrated into your Steam library.
@@ -10,7 +10,7 @@ What you get with this setup:
 
 ## 🧩 Prerequisites
 
-- [Steam](https://steampowered.com/) (distribution package)
+- [Steam](https://steampowered.com) (distribution package)
 - [protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 - `FA_1_00F.iso` (Jane's Fighters Anthology installation disc ISO image)

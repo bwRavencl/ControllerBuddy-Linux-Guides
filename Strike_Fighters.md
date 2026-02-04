@@ -2,7 +2,7 @@
 
 ## 📖 Description
 
-This guide describes the installation of Strike Fighters, Wings Over Vietnam, Wings Over Europe, and Wings Over Israel for use with [ControllerBuddy](https://controllerbuddy.org/) on Linux via the [Proton](https://github.com/ValveSoftware/Proton) compatibility layer.
+This guide describes the installation of Strike Fighters, Wings Over Vietnam, Wings Over Europe, and Wings Over Israel for use with [ControllerBuddy](https://controllerbuddy.org) on Linux via the [Proton](https://github.com/ValveSoftware/Proton) compatibility layer.
 
 What you get with this setup:
 - An installation of your chosen game that is nicely integrated into your Steam library.
@@ -10,7 +10,7 @@ What you get with this setup:
 
 ## 🧩 Prerequisites
 
-- [Steam](https://steampowered.com/) (distribution package)
+- [Steam](https://steampowered.com) (distribution package)
 - [protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 - Game installation media or installer (`Setup.exe`)

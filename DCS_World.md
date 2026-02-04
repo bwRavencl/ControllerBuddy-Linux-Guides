@@ -2,7 +2,7 @@
 
 ## 📖 Description
 
-This guide describes the installation of [DCS World](https://www.digitalcombatsimulator.com/) (standalone) for use with [ControllerBuddy](https://controllerbuddy.org/) on Linux via the [Proton](https://github.com/ValveSoftware/Proton) compatibility layer.
+This guide describes the installation of [DCS World](https://www.digitalcombatsimulator.com) (standalone) for use with [ControllerBuddy](https://controllerbuddy.org) on Linux via the [Proton](https://github.com/ValveSoftware/Proton) compatibility layer.
 
 What you get with this setup:
 - A standalone installation of DCS World that is nicely integrated into your Steam library and configured for use with ControllerBuddy.
@@ -11,16 +11,16 @@ What you get with this setup:
 
 ## 🧩 Prerequisites
 
-- [Steam](https://steampowered.com/) (distribution package)
-- [Git](https://git-scm.com/) (distribution package)
-- [ImageMagick](https://imagemagick.org/) (distribution package)
+- [Steam](https://steampowered.com) (distribution package)
+- [Git](https://git-scm.com) (distribution package)
+- [ImageMagick](https://imagemagick.org) (distribution package)
 - [GE-Proton-10-27](https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton10-26)
 - [protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 
 ## 🪜 Steps
 
-1. Download the DCS World installer (`DCS_World_web.exe`) from [here](https://www.digitalcombatsimulator.com/en/downloads/world/stable/).
+1. Download the DCS World installer (`DCS_World_web.exe`) from [here](https://www.digitalcombatsimulator.com/en/downloads/world/stable).
 
 2. Add `DCS_World_web.exe` as a Non-Steam game.
 
