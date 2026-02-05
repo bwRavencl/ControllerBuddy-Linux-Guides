@@ -14,7 +14,7 @@ What you get with this setup:
 - [Steam](https://steampowered.com) (distribution package)
 - [Git](https://git-scm.com) (distribution package)
 - [ImageMagick](https://imagemagick.org) (distribution package)
-- [GE-Proton-10-27](https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton10-26)
+- [GE-Proton-10-29](https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton10-29)
 - [protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 
@@ -26,7 +26,7 @@ What you get with this setup:
 
 3. Rename the **DCS_World_web.exe** Steam shortcut to **DCS World**.
 
-4. Select **GE-Proton-10-27** as compatibility tool.
+4. Select **GE-Proton-10-29** as compatibility tool.
 
 5. Launch the **DCS World** Steam shortcut and install DCS World.
 
