@@ -34,9 +34,9 @@ What you get with this setup:
     flatpak run com.github.Matoking.protontricks -c 'wine <UPDATER>.exe' "$APP_ID"
     ```
 
-7. Install DirectPlay:
+7. Install **directplay** and **powershell** into the Proton prefix:
     ```sh
-    flatpak run com.github.Matoking.protontricks "$APP_ID" directplay
+    flatpak run com.github.Matoking.protontricks "$APP_ID" directplay powershell
     ```
 
 8. Make sure all your game controllers are connected.

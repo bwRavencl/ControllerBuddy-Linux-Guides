@@ -42,9 +42,9 @@ What you get with this setup:
 > [!IMPORTANT]
 > All subsequent commands must be executed within the same shell session to retain the `APP_ID` environment variable.
 
-7. Install **d3dcompiler_47** into the Proton prefix:
+7. Install **d3dcompiler_47**, **powershell**, and **vcrun2022** into the Proton prefix:
     ```sh
-    flatpak run com.github.Matoking.protontricks "$APP_ID" d3dcompiler_47 vcrun2022
+    flatpak run com.github.Matoking.protontricks "$APP_ID" d3dcompiler_47 powershell vcrun2022
     ```
 
 8. Make sure all your game controllers are connected.
@@ -207,29 +207,21 @@ What you get with this setup:
 
 14. Edit the **DCS World** Steam shortcut and select `/home/<USER>/<PICTURES_DIR>/Icons/DCS_World.png` as the icon.
 
-15. Install [PowerShell 7+](https://github.com/PowerShell/PowerShell) into the Proton prefix:
-    ```sh
-    msi_file=$(mktemp -u PowerShell-XXXX.msi) &&
-    curl -o "$msi_file" -L https://github.com/PowerShell/PowerShell/releases/download/v7.5.4/PowerShell-7.5.4-win-x64.msi &&
-    flatpak run com.github.Matoking.protontricks -c "wine msiexec /i '$msi_file'" "$APP_ID"
-    rm -f "$msi_file"
-    ```
-
-16. Set up [ControllerBuddy-DCS-Integration](https://github.com/bwRavencl/ControllerBuddy-DCS-Integration):
+15. Set up [ControllerBuddy-DCS-Integration](https://github.com/bwRavencl/ControllerBuddy-DCS-Integration):
     ```sh
     scripts_dir="~/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/users/steamuser/Saved\ Games/DCS/Scripts" &&
     git clone https://github.com/bwRavencl/ControllerBuddy-DCS-Integration.git "$scripts_dir/ControllerBuddy-DCS-Integration" &&
     echo 'dofile(lfs.writedir()..[[Scripts\ControllerBuddy-DCS-Integration\ControllerBuddy.lua]])' > "$scripts_dir/Export.lua"
     ```
 
-17. Make sure your game controller is still connected.
+16. Make sure your game controller is still connected.
 
-18. Launch ControllerBuddy, and start local run mode to initialize the UINPUT joystick device:
+17. Launch ControllerBuddy, and start local run mode to initialize the UINPUT joystick device:
     ```sh
     flatpak run de.bwravencl.ControllerBuddy -autostart local &
     ```
 
-19. Configure DCS to work with the [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+18. Configure DCS to work with the [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
     ```sh
     controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
     cd "$controller_buddy_profiles_dir/configs/DCS" &&
@@ -242,7 +234,7 @@ The configuration script must be run again whenever the ControllerBuddy-Profiles
 
 1. Make sure your game controller is connected.
 
-2. Execute the following command (steps 6, 18, and 19 combined):
+2. Execute the following command (steps 6, 17, and 18 combined):
     ```sh
     export APP_ID=$(flatpak run com.github.Matoking.protontricks -l \
         | grep '^Non-Steam shortcut: DCS World ([0-9]\+)$' \
