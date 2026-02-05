@@ -16,7 +16,8 @@ Although the guides are designed to be as straightforward as possible, they assu
 - [Falcon 3.0](Falcon_3.0.md)
 - [Falcon BMS](Falcon_BMS.md)
 - [Jane's Fighters Anthology](Fighters_Anthology.md)
-- [IL-2 1946](IL-2_1946.md)
+- [IL-2 Sturmovik: 1946](IL-2_1946.md)
+- [IL-2 Sturmovik: Great Battles](IL-2_GB.md)
 - [Strike Fighters](Strike_Fighters.md)
 
 ## ⚖️ License
