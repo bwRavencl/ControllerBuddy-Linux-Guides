@@ -18,16 +18,19 @@ What you get with this setup:
 ## 🪜 Steps
 
 1. Download Falcon Gold in Steam.
-2. Create a folder which will hold a custom DOSBox config file and launch script for Falcon 3.0.
+
+2. Create a folder which will hold a custom DOSBox config file and launch script for Falcon 3.0:
     ```sh
     mkdir "$HOME/Falcon_Gold"
     ```
+
 3. Configure Falcon Gold to work with the `Falcon_3.0.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
     ```sh
     controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
     cp "$controller_buddy_profiles_dir/configs/Falcon_3.0/JOYSTICK.DEF" "$HOME/.local/share/Steam/steamapps/common/Falcon Gold/game/"
     ```
-4. Create the DOSBox config file.
+
+4. Create the DOSBox config file:
     ```sh
     cat << 'EOF' > "$HOME/Falcon_Gold/dosbox_falcon_gold.conf"
     [sdl]
@@ -69,7 +72,8 @@ What you get with this setup:
 
     EOF
     ```
-5. Create the launch script.
+
+5. Create the launch script:
     ```sh
     cat << 'EOF' > "$HOME/Falcon_Gold/Falcon_Gold.sh"
     #!/bin/bash
@@ -112,7 +116,9 @@ What you get with this setup:
 
     EOF
     ```
+
 6. Add the launch script (`$HOME/Falcon_Gold/Falcon_Gold.sh`) as a Non-Steam game to your Steam library.
+
 7. Rename the **Falcon_Gold.sh** Steam shortcut to **Falcon Gold (ControllerBuddy)**.
 
 ## 🎮 Steam Deck Specifics
@@ -129,5 +135,7 @@ There is a special ControllerBuddy Steam Input controller layout available which
 | Left Touchpad Y-Axis | Scroll up/down     |
 
 To use this layout:
+
 1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
+
 2. Apply the layout to the **Falcon Gold (ControllerBuddy)** shortcut in your Steam library.

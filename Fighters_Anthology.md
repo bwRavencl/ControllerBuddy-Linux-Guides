@@ -18,20 +18,24 @@ What you get with this setup:
 ## 🪜 Steps
 
 1. Mount the `FA_1_00F.iso` disc image to a temporary directory:
-```sh
-export CDROM_DIR=$(mktemp -d cdrom-XXXX) &&
-sudo mount -o loop FA_1_00F.iso "$CDROM_DIR" &&
-echo "setup.exe located at: $CDROM_DIR/setup.exe"
-```
+    ```sh
+    export CDROM_DIR=$(mktemp -d cdrom-XXXX) &&
+    sudo mount -o loop FA_1_00F.iso "$CDROM_DIR" &&
+    echo "setup.exe located at: $CDROM_DIR/setup.exe"
+    ```
 
 > [!IMPORTANT]
 > All subsequent commands must be executed within the same shell session to retain the `CDROM_DIR` environment variable.
 
-2. Add `setup.exe` as a Non-Steam game
+2. Add `setup.exe` as a Non-Steam game.
+
 3. Rename the **setup.exe** Steam shortcut to **Jane's Fighters Anthology**.
+
 4. Select **Proton 9.0-4** as compatibility tool.
+
 5. Launch the **Jane's Fighters Anthology** Steam shortcut and install Jane's Fighters Anthology.  
     During the setup, select "Full Install - Digital Music".
+
 6. Obtain the `APP_ID` of the Proton prefix:
     ```sh
     export APP_ID=$(flatpak run com.github.Matoking.protontricks -l \
@@ -264,12 +268,16 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
 
     killall -q ControllerBuddy
     ```
+
 2. Replace the placeholder `<APP_ID>` in the script with the actual **APP ID** obtained in step 6 of the main guide.
+
 3. Make the script executable:
     ```sh
     chmod +x "$HOME/Fighters_Anthology.sh"
     ```
+
 4. Add the script as a Non-Steam game to your Steam library.
+
 5. Rename the **Fighters_Anthology.sh** Steam shortcut to **Jane's Fighters Anthology (Gaming Mode)**.
 
 > [!IMPORTANT]
@@ -287,5 +295,7 @@ There is a special ControllerBuddy Steam Input controller layout available which
 | Left Touchpad Y-Axis | Scroll up/down     |
 
 To use this layout:
+
 1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
+
 2. Apply the layout to both **Jane's Fighters Anthology** shortcuts in your Steam library.

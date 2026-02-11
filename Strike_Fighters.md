@@ -18,9 +18,13 @@ What you get with this setup:
 ## 🪜 Steps
 
 1. Add `Setup.exe` as a Non-Steam game.
+
 2. Rename the **setup.exe** Steam shortcut to **Strike Fighters**, **Wings Over Vietnam**, **Wings Over Europe**, or **Wings Over Israel** accordingly.
+
 3. Select **Proton 9.0-4** as compatibility tool.
+
 4. Launch the game Steam shortcut and install the game.
+
 5. Obtain the `APP_ID` of the Proton prefix:
     ```sh
     flatpak run com.github.Matoking.protontricks -l
@@ -243,5 +247,7 @@ There is a special ControllerBuddy Steam Input controller layout available which
 | Left Touchpad Y-Axis | Scroll up/down     |
 
 To use this layout:
+
 1. Open the following link in the Steam browser to obtain the controller layout: `steam://controllerconfig/25189661165/3605812061`
+
 2. Apply the layout to both **Strike Fighters** shortcuts in your Steam library.
