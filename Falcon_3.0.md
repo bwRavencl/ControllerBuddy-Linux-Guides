@@ -35,15 +35,19 @@ What you get with this setup:
     cat << 'EOF' > "$HOME/Falcon_Gold/dosbox_falcon_gold.conf"
     [sdl]
     fullscreen = true
+    host_rate = sdi
+    presentation_mode = cfr
 
     [dosbox]
     memsize = 8
+    vmem_delay = 650
+    dos_rate = 600
 
     [render]
     glshader = nearest
 
     [cpu]
-    cpu_cycles = 18000
+    cpu_cycles = 20000
     cycleup = 1000
     cycledown = 1000
 
