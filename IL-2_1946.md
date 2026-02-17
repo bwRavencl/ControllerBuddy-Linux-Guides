@@ -35,7 +35,7 @@ What you get with this setup:
 
 6. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
     ```sh
-    reg_file=$(mktemp joysticks-XXXX.reg) &&
+    reg_file=$(mktemp -p '' joysticks-XXXX.reg) &&
     python3 - <<'EOF' "$reg_file" &&
     import ctypes
     import ctypes.util
