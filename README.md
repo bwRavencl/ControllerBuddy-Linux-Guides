@@ -15,6 +15,7 @@ Although the guides are designed to be as straightforward as possible, they assu
 - [EF2000 V2.0](EF2000_V2.0.md)
 - [Falcon 3.0](Falcon_3.0.md)
 - [Falcon BMS](Falcon_BMS.md)
+- [F-22: Air Dominance Fighter](F-22_ADF.md)
 - [Jane's Fighters Anthology](Fighters_Anthology.md)
 - [IL-2 Sturmovik: 1946](IL-2_1946.md)
 - [IL-2 Sturmovik: Great Battles](IL-2_GB.md)
