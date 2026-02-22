@@ -204,7 +204,7 @@ What you get with this setup:
                 f.write(f"\"{safe_name}\"=\"disabled\"\n")
         print(f"Wrote registry file: {path}")
     EOF
-    flatpak run com.github.Matoking.protontricks -c "wine reg import '$reg_file'" "$APP_ID"
+    flatpak run --filesystem="$reg_file":ro com.github.Matoking.protontricks -c "wine reg import '$reg_file'" "$APP_ID"
     rm -f "$reg_file"
     ```
 
