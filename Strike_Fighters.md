@@ -202,7 +202,7 @@ What you get with this setup:
 
 To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created. If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
-1. Create a new script file `Strike_Fighters.sh` in your home directory with the following content:
+1. Create a new text file named `Strike_Fighters.sh` in your home directory with the following content:
     ```bash
     #!/bin/bash
 
@@ -215,30 +215,38 @@ To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mo
     flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/Strike_Fighters.json -tray &
 
     timeout 10 bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done'
-    if [ "$?" -eq 124 ]; then
+    if [ "$?" -eq 124 ]
+    then
         zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within 10 seconds.\n\nCheck if your controller is connected." --width 500
+    else
+        "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
+            "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
+            "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
+            "$HOME/.local/share/Steam/steamapps/common/Proton 9.0 (Beta)/proton" waitforexitandrun \
+            "$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId/pfx/drive_c/<GAME_FOLDER>/<EXE>.exe"
     fi
-
-    "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
-        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
-        "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
-        "$HOME/.local/share/Steam/steamapps/common/Proton 9.0 (Beta)/proton" waitforexitandrun \
-        "$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId/pfx/drive_c/<GAME_FOLDER>/<EXE>.exe"
 
     killall -q ControllerBuddy
     ```
+
 2. Replace the placeholder `<APP_ID>` in the script with the actual **APP ID** obtained in step 5 of the main guide.
+
 3. Make the script executable:
     ```sh
     chmod +x "$HOME/Strike_Fighters.sh"
     ```
-4. Add the script as a Non-Steam game to your Steam library.
+
+4. Add the `Strike_Fighters.sh` launch script as a Non-Steam game to your Steam library.
+
 5. Rename the **Strike_Fighters.sh** Steam shortcut to **Strike Fighters (Gaming Mode)**.
 
 > [!IMPORTANT]
 > The other Steam shortcut must not be deleted, as this would also delete the Proton prefix.
 
 ### Configure Touchpads
+
+> [!IMPORTANT]
+> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **Strike Fighters (Gaming Mode)** shortcut to ensure the controller can be detected by ControllerBuddy.
 
 There is a special ControllerBuddy Steam Input controller layout available which configures the Steam Deck's touchpads to act as a mouse replacement.
 

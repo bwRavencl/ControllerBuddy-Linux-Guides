@@ -246,7 +246,7 @@ What you get with this setup:
 
 To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created. If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
-1. Create a new script file `Fighters_Anthology.sh` in your home directory with the following content:
+1. Create a new text file named `Fighters_Anthology.sh` in your home directory with the following content:
     ```bash
     #!/bin/bash
 
@@ -259,15 +259,16 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
     flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/Fighters_Anthology.json -tray &
 
     timeout 10 bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done'
-    if [ "$?" -eq 124 ]; then
+    if [ "$?" -eq 124 ]
+    then
         zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within 10 seconds.\n\nCheck if your controller is connected." --width 500
+    else
+        "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
+            "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
+            "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
+            "$HOME/.local/share/Steam/steamapps/common/Proton 9.0 (Beta)/proton" waitforexitandrun \
+            "$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId/pfx/drive_c/JANES/Fighters Anthology/FA.EXE"
     fi
-
-    "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
-        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
-        "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
-        "$HOME/.local/share/Steam/steamapps/common/Proton 9.0 (Beta)/proton" waitforexitandrun \
-        "$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId/pfx/drive_c/JANES/Fighters Anthology/FA.EXE"
 
     killall -q ControllerBuddy
     ```
@@ -279,7 +280,7 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
     chmod +x "$HOME/Fighters_Anthology.sh"
     ```
 
-4. Add the script as a Non-Steam game to your Steam library.
+4. Add the `Fighters_Anthology.sh` launch script as a Non-Steam game to your Steam library.
 
 5. Rename the **Fighters_Anthology.sh** Steam shortcut to **Jane's Fighters Anthology (Gaming Mode)**.
 
@@ -287,6 +288,9 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
 > The other Steam shortcut must not be deleted, as this would also delete the Proton prefix.
 
 ### Configure Touchpads
+
+> [!IMPORTANT]
+> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **Jane's Fighters Anthology (Gaming Mode)** shortcut to ensure the controller can be detected by ControllerBuddy.
 
 There is a special ControllerBuddy Steam Input controller layout available which configures the Steam Deck's touchpads to act as a mouse replacement.
 

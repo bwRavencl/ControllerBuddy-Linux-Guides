@@ -82,7 +82,7 @@ What you get with this setup:
 
 5. Create the launch script:
     ```sh
-    cat << 'EOF' > "$HOME/Falcon_Gold/Falcon_Gold.sh"
+    cat << 'EOF' > "$HOME/Falcon_Gold/Falcon_Gold.sh" && chmod +x "$HOME/Falcon_Gold/Falcon_Gold.sh"
     #!/bin/bash
 
     CB_PROFILE=Falcon_3.0.json
@@ -98,28 +98,24 @@ What you get with this setup:
     for (( i=1; i<=WAIT_TIMEOUT; i++ )); do
         CB_JOYSTICK_DEVICE=$(awk -v RS='' "/Name=\"$CB_DEVICE_NAME\"/{match(\$0, /js[0-9]+/); print substr(\$0, RSTART, RLENGTH); exit}" /proc/bus/input/devices)
 
-        if [ -n "$CB_JOYSTICK_DEVICE" ]; then
+        if [ -n "$CB_JOYSTICK_DEVICE" ]
+        then
             break
         fi
 
         sleep 1
     done
 
-    function quit_cb {
-        killall -q ControllerBuddy
-    }
-
-    if [ -z "$CB_JOYSTICK_DEVICE" ]; then
+    if [ -z "$CB_JOYSTICK_DEVICE" ]
+        then
         zenity --error --text="Launch aborted because $CB_DEVICE_NAME wasn't ready within $WAIT_TIMEOUT seconds.\n\nCheck if your controller is connected." --width 500
-        quit_cb
-        exit 1
+    else
+        SDL_JOYSTICK_DEVICE="/dev/input/$CB_JOYSTICK_DEVICE" \
+        SDL_MOUSE_RELATIVE_SPEED_SCALE=0.3 \
+        flatpak run io.github.dosbox-staging -conf "$DOSBOX_CONF"
     fi
 
-    SDL_JOYSTICK_DEVICE="/dev/input/$CB_JOYSTICK_DEVICE" \
-    SDL_MOUSE_RELATIVE_SPEED_SCALE=0.3 \
-    flatpak run io.github.dosbox-staging -conf "$DOSBOX_CONF"
-
-    quit_cb
+    killall -q ControllerBuddy
 
     EOF
     ```
@@ -131,6 +127,9 @@ What you get with this setup:
 ## 🎮 Steam Deck Specifics
 
 ### Configure Touchpads
+
+> [!IMPORTANT]
+> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **Falcon Gold (ControllerBuddy)** shortcut to ensure the controller can be detected by ControllerBuddy.
 
 There is a special ControllerBuddy Steam Input controller layout available which configures the Steam Deck's touchpads to act as a mouse replacement.
 
