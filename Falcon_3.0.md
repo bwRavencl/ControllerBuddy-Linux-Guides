@@ -17,6 +17,9 @@ What you get with this setup:
 
 ## 🪜 Steps
 
+> [!IMPORTANT]
+> Before starting with the steps, make sure to read the [Important Notes](README.md#%EF%B8%8F-important-notes) section in the [README](README.md) of this repository.
+
 1. Download Falcon Gold in Steam.
 
 2. Create a folder which will hold a custom DOSBox config file and launch script for Falcon 3.0:

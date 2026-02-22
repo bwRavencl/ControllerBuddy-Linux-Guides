@@ -17,6 +17,9 @@ What you get with this setup:
 
 ## 🪜 Steps
 
+> [!IMPORTANT]
+> Before starting with the steps, make sure to read the [Important Notes](README.md#%EF%B8%8F-important-notes) section in the [README](README.md) of this repository.
+
 1. Download F-22: Air Dominance Fighter in Steam.
 
 2. Select **Proton 10.0-4** as compatibility tool.

@@ -17,6 +17,9 @@ What you get with this setup:
 
 ## 🪜 Steps
 
+> [!IMPORTANT]
+> Before starting with the steps, make sure to read the [Important Notes](README.md#%EF%B8%8F-important-notes) section in the [README](README.md) of this repository.
+
 1. Mount the `FA_1_00F.iso` disc image to a temporary directory:
     ```sh
     export CDROM_DIR=$(mktemp -d cdrom-XXXX) &&

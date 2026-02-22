@@ -17,6 +17,9 @@ What you get with this setup:
 
 ## 🪜 Steps
 
+> [!IMPORTANT]
+> Before starting with the steps, make sure to read the [Important Notes](README.md#%EF%B8%8F-important-notes) section in the [README](README.md) of this repository.
+
 1. Add `Setup.exe` as a Non-Steam game.
 
 2. Rename the **setup.exe** Steam shortcut to **Strike Fighters**, **Wings Over Vietnam**, **Wings Over Europe**, or **Wings Over Israel** accordingly.

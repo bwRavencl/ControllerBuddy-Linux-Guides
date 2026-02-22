@@ -20,6 +20,9 @@ What you get with this setup:
 
 ## 🪜 Steps
 
+> [!IMPORTANT]
+> Before starting with the steps, make sure to read the [Important Notes](README.md#%EF%B8%8F-important-notes) section in the [README](README.md) of this repository.
+
 1. Download the DCS World installer (`DCS_World_web.exe`) from [here](https://www.digitalcombatsimulator.com/en/downloads/world/stable).
 
 2. Add `DCS_World_web.exe` as a Non-Steam game.
