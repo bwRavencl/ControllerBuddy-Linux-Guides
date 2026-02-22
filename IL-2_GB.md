@@ -153,6 +153,7 @@ What you get with this setup:
     ```sh
     flatpak run com.github.Matoking.protontricks "$APP_ID" d3dcompiler_47 powershell
     ```
+
 8. Make sure your game controller is still connected.
 
 9. Launch ControllerBuddy, and start local run mode to initialize the UINPUT joystick device:
