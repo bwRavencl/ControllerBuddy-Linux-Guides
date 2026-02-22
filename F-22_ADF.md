@@ -149,16 +149,46 @@ What you get with this setup:
     rm -f "$reg_file"
     ```
 
-7. Install **directplay** into the Proton prefix:
+7. Install **directplay** and **powershell** into the Proton prefix:
     ```sh
-    flatpak run com.github.Matoking.protontricks "$APP_ID" directplay
+    flatpak run com.github.Matoking.protontricks "$APP_ID" directplay powershell
     ```
 
-8. Update the **F-22: Air Dominance Fighter** Steam shortcut as follows:
+8. Make sure your game controller is still connected.
+
+9. Launch ControllerBuddy, and start local run mode to initialize the UINPUT joystick device:
+    ```sh
+    flatpak run de.bwravencl.ControllerBuddy -autostart local &
+    ```
+
+10. Configure F-22: Air Dominance Fighter to work with the [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+    ```sh
+    controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
+    cd "$controller_buddy_profiles_dir/configs/F-22_ADF" &&
+    WINEDEBUG='-all' flatpak run --filesystem="$controller_buddy_profiles_dir" com.github.Matoking.protontricks -c 'wine pwsh Configure.ps1' "$APP_ID"
+    ```
+
+11. Update the **F-22: Air Dominance Fighter** Steam shortcut as follows:
 
     **LAUNCH OPTIONS**:
     ```sh
     ${STEAM_RUNTIME}/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/F-22_ADF.json -tray & timeout 10 bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within 10 seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
+    ```
+
+## 🔄 Re-running the Configuration Script
+
+The configuration script must be run again whenever the ControllerBuddy-Profiles receive an update.
+
+1. Make sure your game controller is connected.
+
+2. Execute the following command (steps 4, 9, and 10 combined):
+
+    ```sh
+    export APP_ID=3146140
+    flatpak run de.bwravencl.ControllerBuddy -autostart local &
+    controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
+    cd "$controller_buddy_profiles_dir/configs/F-22_ADF" &&
+    WINEDEBUG='-all' flatpak run --filesystem="$controller_buddy_profiles_dir" com.github.Matoking.protontricks -c 'wine pwsh Configure.ps1' "$APP_ID"
     ```
 
 ## 🎮 Steam Deck Specifics
