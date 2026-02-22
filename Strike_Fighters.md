@@ -206,11 +206,11 @@ To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mo
     ```bash
     #!/bin/bash
 
-    # the variable app_id must be adjusted accordingly
-    app_id=<APP_ID>
+    # the variable SteamAppId must be adjusted accordingly
+    SteamAppId=<APP_ID>
 
     export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/root/"
-    export STEAM_COMPAT_DATA_PATH="$HOME/.local/share/Steam/steamapps/compatdata/$app_id"
+    export STEAM_COMPAT_DATA_PATH="$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId"
 
     flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/Strike_Fighters.json -tray &
 
@@ -220,10 +220,10 @@ To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mo
     fi
 
     "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
-        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$app_id" -- \
+        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
         "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
         "$HOME/.local/share/Steam/steamapps/common/Proton 9.0 (Beta)/proton" waitforexitandrun \
-        "$HOME/.local/share/Steam/steamapps/compatdata/$app_id/pfx/drive_c/<GAME_FOLDER>/<EXE>.exe"
+        "$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId/pfx/drive_c/<GAME_FOLDER>/<EXE>.exe"
 
     killall -q ControllerBuddy
     ```

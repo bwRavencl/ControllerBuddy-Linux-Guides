@@ -202,12 +202,13 @@ To allow launching F-22: Air Dominance Fighter with ControllerBuddy from the Ste
 
 1. Create a new script file `F-22_ADF.sh` in your home directory:
     ```sh
-    cat << 'EOF' > "$HOME/F-22_ADF.sh"
+    cat << 'EOF' > "$HOME/F-22_ADF.sh" && chmod +x "$HOME/F-22_ADF.sh"
     #!/bin/bash
-    app_id=3146140
+    SteamAppId=3146140
+    game_dir="$HOME/.local/share/Steam/steamapps/common/F22ADF"
 
     export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/root/"
-    export STEAM_COMPAT_DATA_PATH="$HOME/.local/share/Steam/steamapps/compatdata/$app_id"
+    export STEAM_COMPAT_DATA_PATH="$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId"
 
     flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/F-22_ADF.json -tray &
 
@@ -216,25 +217,21 @@ To allow launching F-22: Air Dominance Fighter with ControllerBuddy from the Ste
         zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within 10 seconds.\n\nCheck if your controller is connected." --width 500
     fi
 
+    cd "$game_dir" &&
     "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
-        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$app_id" -- \
+        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
         "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
         "$HOME/.local/share/Steam/steamapps/common/Proton 10.0/proton" waitforexitandrun \
-        "$HOME/.local/share/Steam/steamapps/common/F22ADF/adfusa.exe"
+        "$game_dir/adfusa.exe"
 
     killall -q ControllerBuddy
 
     EOF
     ```
 
-2. Make the script executable:
-    ```sh
-    chmod +x "$HOME/F-22_ADF.sh"
-    ```
+2. Add the script as a Non-Steam game to your Steam library.
 
-3. Add the script as a Non-Steam game to your Steam library.
-
-4. Rename the **F-22_ADF.sh** Steam shortcut to **F-22: Air Dominance Fighter (Gaming Mode)**.
+3. Rename the **F-22_ADF.sh** Steam shortcut to **F-22: Air Dominance Fighter (Gaming Mode)**.
 
 ### Configure Touchpads
 
