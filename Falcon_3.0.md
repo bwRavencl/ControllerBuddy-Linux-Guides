@@ -144,7 +144,7 @@ To use this layout:
 
 1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
     ```sh
-    xdg-open steam://controllerconfig/25189661165/3605812061
+    xdg-open steam://controllerconfig/3259858387/3672925155
     ```
 
 2. Apply the layout to the **Falcon Gold (ControllerBuddy)** shortcut in your Steam library.

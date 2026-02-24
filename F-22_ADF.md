@@ -145,7 +145,7 @@ To use this layout:
 
 1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
     ```sh
-    xdg-open steam://controllerconfig/25189661165/3605812061
+    xdg-open steam://controllerconfig/3259858387/3672925155
     ```
 
 2. Apply the **ControllerBuddy** layout to the **F-22: Air Dominance Fighter (ControllerBuddy)** shortcut in your Steam library.
