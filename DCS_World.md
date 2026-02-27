@@ -195,7 +195,7 @@ What you get with this setup:
 
     **LAUNCH OPTIONS**:
     ```sh
-    ${STEAM_RUNTIME}/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -tray & timeout 10 bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && override_vram_size=8192 CONTROLLER_BUDDY_PROFILES_DIR=/app/share/ControllerBuddy-Profiles WINE_SIMULATE_WRITECOPY=1 WINEDLLOVERRIDES='wbemprox=n' %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within 10 seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
+    "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && override_vram_size=8192 CONTROLLER_BUDDY_PROFILES_DIR=/app/share/ControllerBuddy-Profiles WINE_SIMULATE_WRITECOPY=1 WINEDLLOVERRIDES='wbemprox=n' %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
     ```
 
 12. Launch the **DCS World** Steam shortcut to download and install your modules.

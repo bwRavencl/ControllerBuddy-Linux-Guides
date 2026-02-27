@@ -92,7 +92,7 @@ What you get with this setup:
 
     flatpak run de.bwravencl.ControllerBuddy -autostart local -profile "/app/share/ControllerBuddy-Profiles/$cb_profile" -tray &
 
-    timeout=10
+    timeout=15
     cb_device_name="ControllerBuddy Joystick"
 
     for (( i=1; i<=timeout; i++ )); do
