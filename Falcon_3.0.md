@@ -85,20 +85,20 @@ What you get with this setup:
     cat << 'EOF' > "$HOME/Falcon_Gold/Falcon_Gold.sh" && chmod +x "$HOME/Falcon_Gold/Falcon_Gold.sh"
     #!/bin/bash
 
-    CB_PROFILE=Falcon_3.0.json
-    DOSBOX_CONF=dosbox_falcon_gold.conf
+    cb_profile=Falcon_3.0.json
+    dosbox_conf=dosbox_falcon_gold.conf
 
     cd "$(cd -- "$(dirname -- "$0")" &> /dev/null && pwd)" || exit
 
-    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile "/app/share/ControllerBuddy-Profiles/$CB_PROFILE" -tray &
+    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile "/app/share/ControllerBuddy-Profiles/$cb_profile" -tray &
 
-    WAIT_TIMEOUT=10
-    CB_DEVICE_NAME="ControllerBuddy Joystick"
+    timeout=10
+    cb_device_name="ControllerBuddy Joystick"
 
-    for (( i=1; i<=WAIT_TIMEOUT; i++ )); do
-        CB_JOYSTICK_DEVICE=$(awk -v RS='' "/Name=\"$CB_DEVICE_NAME\"/{match(\$0, /js[0-9]+/); print substr(\$0, RSTART, RLENGTH); exit}" /proc/bus/input/devices)
+    for (( i=1; i<=timeout; i++ )); do
+        cb_joystick_device=$(awk -v RS='' "/Name=\"$cb_device_name\"/{match(\$0, /js[0-9]+/); print substr(\$0, RSTART, RLENGTH); exit}" /proc/bus/input/devices)
 
-        if [ -n "$CB_JOYSTICK_DEVICE" ]
+        if [ -n "$cb_joystick_device" ]
         then
             break
         fi
@@ -106,13 +106,13 @@ What you get with this setup:
         sleep 1
     done
 
-    if [ -z "$CB_JOYSTICK_DEVICE" ]
+    if [ -z "$cb_joystick_device" ]
         then
-        zenity --error --text="Launch aborted because $CB_DEVICE_NAME wasn't ready within $WAIT_TIMEOUT seconds.\n\nCheck if your controller is connected." --width 500
+        zenity --error --text="Launch aborted because $cb_device_name wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500
     else
-        SDL_JOYSTICK_DEVICE="/dev/input/$CB_JOYSTICK_DEVICE" \
+        SDL_JOYSTICK_DEVICE="/dev/input/$cb_joystick_device" \
         SDL_MOUSE_RELATIVE_SPEED_SCALE=0.3 \
-        flatpak run io.github.dosbox-staging -conf "$DOSBOX_CONF"
+        flatpak run io.github.dosbox-staging -conf "$dosbox_conf"
     fi
 
     killall -q ControllerBuddy
