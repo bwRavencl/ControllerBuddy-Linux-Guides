@@ -11,6 +11,7 @@ Although the guides are designed to be as straightforward as possible, they assu
 
 ## 📚 Guides
 
+- [Condor 3](Condor_3.md)
 - [DCS World](DCS_World.md)
 - [EF2000 V2.0](EF2000_V2.0.md)
 - [Falcon 3.0](Falcon_3.0.md)
