@@ -24,7 +24,7 @@ What you get with this setup:
 
 2. Select **Proton 10.0-4** as compatibility tool.
 
-3. Launch and immediately exit **F-22: Air Dominance Fighter** so that the Proton prefix gets created and the registry entries of F-22: Air Dominance Fighter get created.
+3. Launch and immediately exit **F-22: Air Dominance Fighter** so that the Proton prefix gets created.
 
 4. Export the `APP_ID` environment variable:
     ```sh
