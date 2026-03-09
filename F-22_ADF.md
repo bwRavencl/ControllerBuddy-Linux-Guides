@@ -70,7 +70,6 @@ The configuration script must be run again whenever the ControllerBuddy-Profiles
 1. Make sure your game controller is connected.
 
 2. Execute the following command (steps 4, 7, and 8 combined):
-
     ```sh
     export APP_ID=3146140
     flatpak run de.bwravencl.ControllerBuddy -autostart local &
