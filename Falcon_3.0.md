@@ -70,8 +70,8 @@ What you get with this setup:
 
     [autoexec]
     @echo off
-    mount c "/home/matteo/.local/share/Steam/steamapps/common/Falcon Gold/game"
-    imgmount d "/home/matteo/.local/share/Steam/steamapps/common/Falcon Gold/game/game.gld" -t iso -fs iso
+    mount c "~/.local/share/Steam/steamapps/common/Falcon Gold/game"
+    imgmount d "~/.local/share/Steam/steamapps/common/Falcon Gold/game/game.gld" -t iso -fs iso
     c:
     cls
     FALCONCD.EXE
