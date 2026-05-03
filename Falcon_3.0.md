@@ -50,6 +50,7 @@ What you get with this setup:
 
     [cpu]
     cpu_cycles = 20000
+    cpu_cycles_protected = auto
     cycleup = 1000
     cycledown = 1000
 
