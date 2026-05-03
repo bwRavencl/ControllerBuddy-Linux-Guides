@@ -44,7 +44,6 @@ What you get with this setup:
     [dosbox]
     memsize = 8
     vmem_delay = 650
-    dos_rate = 600
 
     [render]
     glshader = nearest
