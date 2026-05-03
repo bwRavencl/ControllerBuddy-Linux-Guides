@@ -123,6 +123,8 @@ What you get with this setup:
 
 7. Rename the **Falcon_Gold.sh** Steam shortcut to **Falcon Gold (ControllerBuddy)**.
 
+8. Override the Steam **CONTROLLER** settings of the **Falcon Gold (ControllerBuddy)** shortcut settings to **Disable Steam Input**.
+
 ## 🎮 Steam Deck Specifics
 
 ### Configure Touchpads
