@@ -95,7 +95,8 @@ What you get with this setup:
     timeout=15
     cb_device_name="ControllerBuddy Joystick"
 
-    for (( i=1; i<=timeout; i++ )); do
+    for (( i=1; i<=timeout; i++ ))
+    do
         cb_joystick_device=$(awk -v RS='' "/Name=\"$cb_device_name\"/{match(\$0, /js[0-9]+/); print substr(\$0, RSTART, RLENGTH); exit}" /proc/bus/input/devices)
 
         if [ -n "$cb_joystick_device" ]
@@ -107,7 +108,7 @@ What you get with this setup:
     done
 
     if [ -z "$cb_joystick_device" ]
-        then
+    then
         zenity --error --text="Launch aborted because $cb_device_name wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500
     else
         SDL_JOYSTICK_DEVICE="/dev/input/$cb_joystick_device" \
