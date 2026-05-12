@@ -87,6 +87,7 @@ What you get with this setup:
 
     cb_profile=Falcon_3.0.json
     dosbox_conf=dosbox_falcon_gold.conf
+    mouse_sensitivity=1.0
 
     cd "$(cd -- "$(dirname -- "$0")" &> /dev/null && pwd)" || exit
 
@@ -112,7 +113,7 @@ What you get with this setup:
         zenity --error --text="Launch aborted because $cb_device_name wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500
     else
         SDL_JOYSTICK_DEVICE="/dev/input/$cb_joystick_device" \
-        SDL_MOUSE_RELATIVE_SPEED_SCALE=0.3 \
+        SDL_MOUSE_RELATIVE_SPEED_SCALE="$mouse_sensitivity" \
         flatpak run io.github.dosbox-staging -conf "$dosbox_conf"
     fi
 
