@@ -250,28 +250,45 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
     ```bash
     #!/bin/bash
 
-    # the variable SteamAppId must be adjusted accordingly
+    # replace placeholder value manually
     SteamAppId=<APP_ID>
+
+    game_dir="$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId/pfx/drive_c/JANES/Fighters Anthology"
+    exe_file=FA.EXE
+    proton_version='Proton 9.0 (Beta)'
+    cb_profile=Fighters_Anthology.json
 
     export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/root/"
     export STEAM_COMPAT_DATA_PATH="$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId"
 
-    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/Fighters_Anthology.json -tray &
+    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile "/app/share/ControllerBuddy-Profiles/$cb_profile" -tray &
+
+    trap 'killall -q ControllerBuddy' EXIT
 
     timeout=15
-    timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done'
-    if [ "$?" -eq 124 ]
-    then
-        zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500
-    else
-        "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
-            "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
-            "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
-            "$HOME/.local/share/Steam/steamapps/common/Proton 9.0 (Beta)/proton" waitforexitandrun \
-            "$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId/pfx/drive_c/JANES/Fighters Anthology/FA.EXE"
-    fi
+    cb_device_name="ControllerBuddy Joystick"
 
-    killall -q ControllerBuddy
+    i=0
+    while ! grep -q "$cb_device_name" /proc/bus/input/devices
+    do
+        if ! pgrep -f 'flatpak-spawn --host /bin/bash -c FLATPAK_ID=de.bwravencl.ControllerBuddy' > /dev/null
+        then
+            (( i++ ))
+            if [ "$i" -ge "$timeout" ]
+            then
+                zenity --error --text="Launch aborted because $cb_device_name wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500
+                exit 1
+            fi
+        fi
+        sleep 1
+    done
+
+    cd "$game_dir" &&
+    "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
+        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
+        "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
+        "$HOME/.local/share/Steam/steamapps/common/$proton_version/proton" waitforexitandrun \
+        "$game_dir/$exe_file"
     ```
 
 2. Replace the placeholder `<APP_ID>` in the script with the actual **APP ID** obtained in step 6 of the main guide.

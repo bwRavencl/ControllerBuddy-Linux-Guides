@@ -88,37 +88,51 @@ On the Steam Deck, a custom launch script is required to run ControllerBuddy alo
     ```sh
     cat << 'EOF' > "$HOME/F-22_ADF.sh" && chmod +x "$HOME/F-22_ADF.sh"
     #!/bin/bash
+
     SteamAppId=3146140
     game_dir="$HOME/.local/share/Steam/steamapps/common/F22ADF"
+    exe_file=adfusa.exe
+    proton_version='Proton 10.0'
+    cb_profile=F-22_ADF.json
 
     export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/root/"
     export STEAM_COMPAT_DATA_PATH="$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId"
 
-    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/F-22_ADF.json -tray &
+    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile "/app/share/ControllerBuddy-Profiles/$cb_profile" -tray &
+
+    trap 'killall -q ControllerBuddy' EXIT
 
     timeout=15
-    timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done'
-    if [ "$?" -eq 124 ]
-    then
-        zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500
-    else
-        controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
-        cd "$controller_buddy_profiles_dir/configs" &&
-        "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
-            "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
-            "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
-            "$HOME/.local/share/Steam/steamapps/common/Proton 10.0/proton" waitforexitandrun \
-            pwsh F-22_ADF\\Configure.ps1 &&
+    cb_device_name="ControllerBuddy Joystick"
 
-        cd "$game_dir" &&
-        "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
-            "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
-            "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
-            "$HOME/.local/share/Steam/steamapps/common/Proton 10.0/proton" waitforexitandrun \
-            "$game_dir/adfusa.exe"
-    fi
+    i=0
+    while ! grep -q "$cb_device_name" /proc/bus/input/devices
+    do
+        if ! pgrep -f 'flatpak-spawn --host /bin/bash -c FLATPAK_ID=de.bwravencl.ControllerBuddy' > /dev/null
+        then
+            (( i++ ))
+            if [ "$i" -ge "$timeout" ]
+            then
+                zenity --error --text="Launch aborted because $cb_device_name wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500
+                exit 1
+            fi
+        fi
+        sleep 1
+    done
 
-    killall -q ControllerBuddy
+    controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
+    cd "$controller_buddy_profiles_dir/configs" &&
+    "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
+        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
+        "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
+        "$HOME/.local/share/Steam/steamapps/common/$proton_version/proton" waitforexitandrun \
+        pwsh F-22_ADF\\Configure.ps1 &&
+    cd "$game_dir" &&
+    "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
+        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
+        "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
+        "$HOME/.local/share/Steam/steamapps/common/$proton_version/proton" waitforexitandrun \
+        "$game_dir/$exe_file"
 
     EOF
     ```
