@@ -34,7 +34,7 @@ What you get with this setup:
 
 3. Rename the **setup.exe** Steam shortcut to **Jane's Fighters Anthology**.
 
-4. Select **Proton 9.0-4** as compatibility tool.
+4. Select **Proton 11.0 (Beta)** as compatibility tool.
 
 5. Launch the **Jane's Fighters Anthology** Steam shortcut and install Jane's Fighters Anthology.  
     During the setup, select "Full Install - Digital Music".
@@ -255,7 +255,7 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
 
     game_dir="$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId/pfx/drive_c/JANES/Fighters Anthology"
     exe_file=FA.EXE
-    proton_version='Proton 9.0 (Beta)'
+    proton_version='Proton 11.0'
     cb_profile=Fighters_Anthology.json
 
     export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/root/"
