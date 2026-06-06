@@ -34,21 +34,29 @@ What you get with this setup:
     ```
 
 > [!IMPORTANT]
+> Replace `<APP_ID>` with the actual APP ID obtained in this step.
+
+6. Set the `APP_ID` variable:
+    ```sh
+    export APP_ID=<APP_ID>
+    ```
+
+> [!IMPORTANT]
 > All subsequent commands must be executed within the same shell session to retain the `APP_ID` environment variable. Replace `<APP_ID>` with the actual APP ID obtained in this step.
 
-6. Download and install the corresponding September 2008 update from [here](https://thirdwire.com/downloads_archive.htm):
+7. Download and install the latest updates (Service Pack and 08.30.06 or September 2008 depending on the game) from [here](https://thirdwire.com/downloads_archive.htm):
     ```sh
     flatpak run com.github.Matoking.protontricks -c 'wine <UPDATER>.exe' "$APP_ID"
     ```
 
-7. Install **directplay** and **powershell** into the Proton prefix:
+8. Install **directplay** and **powershell** into the Proton prefix:
     ```sh
     flatpak run com.github.Matoking.protontricks "$APP_ID" directplay powershell
     ```
 
-8. Make sure all your game controllers are connected.
+9. Make sure all your game controllers are connected.
 
-9. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
+10. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
     ```sh
     reg_file=$(mktemp -p '' joysticks-XXXX.reg) &&
     python3 - <<'EOF' "$reg_file" &&
@@ -173,13 +181,13 @@ What you get with this setup:
 > | `<GAME_FOLDER>` | The path to the game's installation folder      |
 > | `<EXE>`         | The game's executable name                      |
 
-10. Configure the game to work with the `Strike_Fighters.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+11. Configure the game to work with the `Strike_Fighters.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
     ```sh
     controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
     cp "$controller_buddy_profiles_dir/configs/Strike_Fighters/Default.ini" "$HOME/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/<GAME_FOLDER>/Controls/"
     ```
 
-11. Update the Steam shortcut as follows:
+12. Update the Steam shortcut as follows:
 
     **TARGET**:
     ```
