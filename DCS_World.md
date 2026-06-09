@@ -14,7 +14,6 @@ What you get with this setup:
 - [Steam](https://steampowered.com) (distribution package)
 - [Git](https://git-scm.com) (distribution package)
 - [ImageMagick](https://imagemagick.org) (distribution package)
-- [GE-Proton-10-34](https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton10-34)
 - [protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 
@@ -29,7 +28,7 @@ What you get with this setup:
 
 3. Rename the **DCS_World_web.exe** Steam shortcut to **DCS World**.
 
-4. Select **GE-Proton-10-34** as compatibility tool.
+4. Select **Proton Experimental** as compatibility tool.
 
 5. Launch the **DCS World** Steam shortcut and install DCS World.
 
@@ -195,8 +194,13 @@ What you get with this setup:
 
     **LAUNCH OPTIONS**:
     ```sh
-    "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && override_vram_size=8192 CONTROLLER_BUDDY_PROFILES_DIR=/app/share/ControllerBuddy-Profiles WINE_SIMULATE_WRITECOPY=1 WINEDLLOVERRIDES='wbemprox=n' %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
+    "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && override_vram_size=8000 CONTROLLER_BUDDY_PROFILES_DIR=/app/share/ControllerBuddy-Profiles WINE_SIMULATE_WRITECOPY=1 WINEDLLOVERRIDES='wbemprox=n' %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
     ```
+
+> [!NOTE]
+> The above launch options use `override_vram_size=8000` to prevent DCS from overallocating VRAM.  
+> This variable only affects Mesa GPU drivers.  
+> The 8000 MB limit is optimized for a 16 GB VRAM card - scale this number up or down to match your own graphics card's memory.
 
 12. Launch the **DCS World** Steam shortcut to download and install your modules.
 
