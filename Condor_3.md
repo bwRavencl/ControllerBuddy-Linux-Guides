@@ -234,7 +234,8 @@ The configuration script must be run again whenever the ControllerBuddy-Profiles
 
 ### Launching from Gaming Mode
 
-To allow launching Condor 3 with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created. If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
+To allow launching Condor 3 with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created.
+If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
 1. Create a new text file named `Condor_3.sh` in your home directory with the following content:
     ```bash
@@ -322,11 +323,13 @@ To use this layout:
 
 ### License Activation
 
-Both Condor 3 itself and additional planes need to be reactivated after every launch. While the corresponding registry keys get created, Condor 3 seems to be unable to retrieve them when it is launched again.
+Both Condor 3 itself and additional planes need to be reactivated after every launch.
+While the corresponding registry keys get created, Condor 3 seems to be unable to retrieve them when it is launched again.
 
 ### Joining Mutiplayer Servers
 
-The Condoe 3 MIME type handler is not working correctly when Condor 3 is installed via Proton. To join multiplayer servers, a few manual steps are required:
+The Condoe 3 MIME type handler is not working correctly when Condor 3 is installed via Proton.
+To join multiplayer servers, a few manual steps are required:
 
 1. Open the [Server List](https://www.condorsoaring.com/serverlist/?wdt_search=cndr3) in your web browser and right-click the "Join" button of the server you want to join, then select "Copy Link Address".
 

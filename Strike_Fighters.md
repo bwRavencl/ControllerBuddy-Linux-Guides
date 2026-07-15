@@ -42,7 +42,8 @@ What you get with this setup:
     ```
 
 > [!IMPORTANT]
-> All subsequent commands must be executed within the same shell session to retain the `APP_ID` environment variable. Replace `<APP_ID>` with the actual APP ID obtained in this step.
+> All subsequent commands must be executed within the same shell session to retain the `APP_ID` environment variable.
+> Replace `<APP_ID>` with the actual APP ID obtained in this step.
 
 7. Download and install the latest updates (Service Pack and 08.30.06 or September 2008 depending on the game) from [here](https://thirdwire.com/downloads_archive.htm):
     ```sh
@@ -208,7 +209,8 @@ What you get with this setup:
 
 ### Launching from Gaming Mode
 
-To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created. If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
+To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created.
+If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
 1. Create a new text file named `Strike_Fighters.sh` in your home directory with the following content:
     ```bash

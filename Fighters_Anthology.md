@@ -244,7 +244,8 @@ What you get with this setup:
 
 ### Launching from Gaming Mode
 
-To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created. If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
+To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam Deck's Gaming Mode, a custom second shortcut must be created.
+If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
 1. Create a new text file named `Fighters_Anthology.sh` in your home directory with the following content:
     ```bash

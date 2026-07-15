@@ -24,7 +24,8 @@ Although the guides are designed to be as straightforward as possible, they assu
 
 ## ⚠️ Important Notes
 
-Below are some important notes to keep in mind when following the guides in this repository. They apply to all guides, so please read them carefully before starting.
+Below are some important notes to keep in mind when following the guides in this repository.
+They apply to all guides, so please read them carefully before starting.
 
 ### 📋 Copying and Pasting Commands
 
@@ -38,15 +39,19 @@ The guides assume that you have already installed the necessary prerequisites as
 
 It is assumed that the distribution package of Steam is used, **not** the Flatpak version.
 
-For all other prerequisites, it is assumed that the Flatpak versions are used as linked in the respective guides. ControllerBuddy itself is not available on Flathub, but from its own Flatpak repository. Follow the instructions in the [ControllerBuddy-Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak) repository to set it up.
+For all other prerequisites, it is assumed that the Flatpak versions are used as linked in the respective guides.
+ControllerBuddy itself is not available on Flathub, but from its own Flatpak repository.
+Follow the instructions in the [ControllerBuddy-Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak) repository to set it up.
 
 ### 🪜 Following the Steps
 
 It is crucial to follow the steps in the guides in the exact order they are presented.
 
-Skipping steps or performing them out of order may lead to an improperly configured setup. If a step is optional, it will be explicitly marked as such.
+Skipping steps or performing them out of order may lead to an improperly configured setup.
+If a step is optional, it will be explicitly marked as such.
 
-Pay attention to the output of each command. Error messages can provide vital information regarding the success of each step.
+Pay attention to the output of each command.
+Error messages can provide vital information regarding the success of each step.
 
 ## ⚖️ License
 

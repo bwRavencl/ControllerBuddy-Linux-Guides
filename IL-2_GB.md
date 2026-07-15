@@ -24,7 +24,8 @@ What you get with this setup:
 
 2. Select **Proton 10.0-4** as compatibility tool.
 
-3. Launch **IL-2 Sturmovik: Great Battles** so that the Proton prefix gets created. The game will likely crash on the first launch, but that's expected.
+3. Launch **IL-2 Sturmovik: Great Battles** so that the Proton prefix gets created.
+   The game will likely crash on the first launch, but that's expected.
 
 4. Export the `APP_ID` environment variable:
     ```sh
