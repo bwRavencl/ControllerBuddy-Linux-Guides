@@ -22,7 +22,7 @@ What you get with this setup:
 
 1. Download IL-2 Sturmovik: Great Battles in Steam.
 
-2. Select **Proton 10.0-4** as compatibility tool.
+2. Select **Proton 11.0** as compatibility tool.
 
 3. Launch **IL-2 Sturmovik: Great Battles** so that the Proton prefix gets created.
    The game will likely crash on the first launch, but that's expected.

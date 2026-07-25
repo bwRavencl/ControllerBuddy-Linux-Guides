@@ -24,7 +24,7 @@ What you get with this setup:
 
 2. Rename the **CondorSetupV310.exe** Steam shortcut to **Condor 3**.
 
-3. Select **Proton 10.0-4** as compatibility tool.
+3. Select **Proton 11.0** as compatibility tool.
 
 4. Launch the **Condor** Steam shortcut and immediately exit the installer so that the Proton prefix gets created. ()
 
@@ -246,7 +246,7 @@ If the normal shortcut is used, ControllerBuddy will launch but the overlay will
 
     game_dir="$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId/pfx/drive_c/Condor3"
     exe_file=Condor.EXE
-    proton_version='Proton 10.0'
+    proton_version='Proton 11.0'
     cb_profile=Condor_3.json
 
     export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/root/"

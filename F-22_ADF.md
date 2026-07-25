@@ -22,7 +22,7 @@ What you get with this setup:
 
 1. Download F-22: Air Dominance Fighter in Steam.
 
-2. Select **Proton 10.0-4** as compatibility tool.
+2. Select **Proton 11.0** as compatibility tool.
 
 3. Launch and immediately exit **F-22: Air Dominance Fighter** so that the Proton prefix gets created.
 
@@ -92,7 +92,7 @@ On the Steam Deck, a custom launch script is required to run ControllerBuddy alo
     SteamAppId=3146140
     game_dir="$HOME/.local/share/Steam/steamapps/common/F22ADF"
     exe_file=adfusa.exe
-    proton_version='Proton 10.0'
+    proton_version='Proton 11.0'
     cb_profile=F-22_ADF.json
 
     export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/root/"
