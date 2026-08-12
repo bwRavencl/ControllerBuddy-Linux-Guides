@@ -18,6 +18,7 @@ Although the guides are designed to be as straightforward as possible, they assu
 - [Falcon BMS](Falcon_BMS.md)
 - [F-22: Air Dominance Fighter](F-22_ADF.md)
 - [Jane's Fighters Anthology](Fighters_Anthology.md)
+- [Korea. IL-2 Series](IL-2_Korea.md)
 - [IL-2 Sturmovik: 1946](IL-2_1946.md)
 - [IL-2 Sturmovik: Great Battles](IL-2_GB.md)
 - [Strike Fighters](Strike_Fighters.md)
