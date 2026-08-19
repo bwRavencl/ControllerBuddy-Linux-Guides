@@ -176,20 +176,8 @@ What you get with this setup:
 
     **LAUNCH OPTIONS**:
     ```sh
-    "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/IL-2_Korea.json -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && KMP_AFFINITY=disabled %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
+    "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/IL-2_Korea.json -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
     ```
-
-> [!IMPORTANT]
-> GitHub Actions artifact download URLs require authentication (a logged-in browser session). Open the following URL in your browser while logged into GitHub.
-
-12. Download a patched build of vk3d-proton from [here](https://github.com/HansKristian-Work/vkd3d-proton/actions/runs/31375232853/artifacts/9057810520).
-
-
-13. From the downloaded archive (`vkd3d-proton-merge-3930f76754f19446bcbc2771cbd9ab5610f6127d.zip`), extract these two files from the `x64` folder:
-    - `x64/d3d12.dll`
-    - `x64/d3d12core.dll`
-
-    Place them both directly into: `$HOME/.local/share/Steam/steamapps/common/IL2Series/bin/game`
 
 ## 🔄 Re-running the Configuration Script
 
