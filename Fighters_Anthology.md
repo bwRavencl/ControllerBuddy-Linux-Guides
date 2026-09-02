@@ -5,6 +5,7 @@
 This guide describes the installation of [Jane's Fighters Anthology](https://en.wikipedia.org/wiki/Fighters_Anthology) for use with [ControllerBuddy](https://controllerbuddy.org) on Linux via the [Proton](https://github.com/ValveSoftware/Proton) compatibility layer.
 
 What you get with this setup:
+
 - An installation of Jane's Fighters Anthology that is nicely integrated into your Steam library.
 - ControllerBuddy will start automatically when you start the game, load the correct profile, and exit when you quit the game.
 
@@ -21,6 +22,7 @@ What you get with this setup:
 > Before starting with the steps, make sure to read the [Important Notes](README.md#%EF%B8%8F-important-notes) section in the [README](README.md) of this repository.
 
 1. Mount the `FA_1_00F.iso` disc image to a temporary directory:
+
     ```sh
     export CDROM_DIR=$(mktemp -d cdrom-XXXX) &&
     sudo mount -o loop FA_1_00F.iso "$CDROM_DIR" &&
@@ -30,16 +32,17 @@ What you get with this setup:
 > [!IMPORTANT]
 > All subsequent commands must be executed within the same shell session to retain the `CDROM_DIR` environment variable.
 
-2. Add `setup.exe` as a Non-Steam game.
+1. Add `setup.exe` as a Non-Steam game.
 
-3. Rename the **setup.exe** Steam shortcut to **Jane's Fighters Anthology**.
+1. Rename the **setup.exe** Steam shortcut to **Jane's Fighters Anthology**.
 
-4. Select **Proton 11.0 (Beta)** as compatibility tool.
+1. Select **Proton 11.0 (Beta)** as compatibility tool.
 
-5. Launch the **Jane's Fighters Anthology** Steam shortcut and install Jane's Fighters Anthology.  
+1. Launch the **Jane's Fighters Anthology** Steam shortcut and install Jane's Fighters Anthology.  
     During the setup, select "Full Install - Digital Music".
 
-6. Obtain the `APP_ID` of the Proton prefix:
+1. Obtain the `APP_ID` of the Proton prefix:
+
     ```sh
     export APP_ID=$(flatpak run com.github.Matoking.protontricks -l \
         | grep "^Non-Steam shortcut: Jane's Fighters Anthology ([0-9]\+)$" \
@@ -51,12 +54,14 @@ What you get with this setup:
 > [!IMPORTANT]
 > All subsequent commands must be executed within the same shell session to retain the `APP_ID` environment variable.
 
-7. Download `fae102.exe` with your browser:
+1. Download `fae102.exe` with your browser:
+
     ```sh
     xdg-open https://jkpeterson.net/fa/misc/fae102.exe &
     ```
 
-8. Install the `fae102.exe` patch using Protontricks:
+1. Install the `fae102.exe` patch using Protontricks:
+
     ```sh
     cd $(xdg-user-dir DOWNLOAD) &&
     flatpak run com.github.Matoking.protontricks -c 'wine fae102.exe' "$APP_ID"
@@ -65,18 +70,21 @@ What you get with this setup:
 > [!IMPORTANT]
 > During the patch installation, `C:\JANES\Fighters Anthology\FA.EXE` must be selected via **My Computer**.
 
-9. Download the `FAno-cd.zip` no-disc patch with your browser:
+1. Download the `FAno-cd.zip` no-disc patch with your browser:
+
     ```sh
     xdg-open https://jkpeterson.net/fa/misc/FAno-cd.zip &
     ```
 
-10. Extract the `FAno-cd.zip` no-disc patch to your Fighters Anthology installation directory:
+1. Extract the `FAno-cd.zip` no-disc patch to your Fighters Anthology installation directory:
+
     ```sh
     cd $(xdg-user-dir DOWNLOAD) &&
     unzip -o FAno-cd.zip -x README.txt -d "$HOME/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/JANES/Fighters Anthology"
     ```
 
-11. Replace the fake `fa_7.lib` of the no-disc patch with `fa_7.lib` from the disc image:
+1. Replace the fake `fa_7.lib` of the no-disc patch with `fa_7.lib` from the disc image:
+
     ```sh
     cp "$CDROM_DIR/fa_7.lib" "$HOME/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/JANES/Fighters Anthology/"
     ```
@@ -84,15 +92,17 @@ What you get with this setup:
 > [!IMPORTANT]
 > Do not replace the fake `fa_4c.lib` with the one from the disc, as it will cause a crash to desktop during startup.
 
-12. Unmount the `FA_1_00F.iso` file and delete the temporary directory:
+1. Unmount the `FA_1_00F.iso` file and delete the temporary directory:
+
     ```sh
     sudo umount "$CDROM_DIR" &&
     rm -rf "$CDROM_DIR"
     ```
 
-13. Make sure all your game controllers are connected.
+1. Make sure all your game controllers are connected.
 
-14. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
+1. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
+
     ```sh
     reg_file=$(mktemp -p '' joysticks-XXXX.reg) &&
     python3 - <<'EOF' "$reg_file" &&
@@ -210,29 +220,33 @@ What you get with this setup:
 
 > [!IMPORTANT]
 > In the following step the placeholders denoted by `<...>` must be replaced accordingly to the following table:
+>
 > | Placeholder | Description                                     |
 > |-------------|-------------------------------------------------|
 > | `<USER>`    | Your username                                   |
 > | `<APP_ID>`  | The Proton prefix **APP ID** obtained in step 6 |
 
-15. Update the **Jane's Fighters Anthology** Steam shortcut as follows:
+1. Update the **Jane's Fighters Anthology** Steam shortcut as follows:
 
     **TARGET**:
-    ```
+
+    ```text
     "/home/<USER>/.local/share/Steam/steamapps/compatdata/<APP_ID>/pfx/drive_c/JANES/Fighters Anthology/FA.EXE"
     ```
 
     **START IN**:
-    ```
+
+    ```text
     "/home/<USER>/.local/share/Steam/steamapps/compatdata/<APP_ID>/pfx/drive_c/JANES/Fighters Anthology"
     ```
 
     **LAUNCH OPTIONS**:
+
     ```sh
     "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/Fighters_Anthology.json -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
     ```
 
-16. Launch the **Jane's Fighters Anthology** Steam shortcut and configure the controls according to the screenshots:
+1. Launch the **Jane's Fighters Anthology** Steam shortcut and configure the controls according to the screenshots:
 
     ![Joystick](https://github.com/bwRavencl/ControllerBuddy-Profiles/raw/50ee366f48afca39497791a1b7b297a836ca7aaf/configs/Fighters_Anthology/joystick.png)
 
@@ -248,6 +262,7 @@ To allow launching Jane's Fighters Anthology with ControllerBuddy from the Steam
 If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
 1. Create a new text file named `Fighters_Anthology.sh` in your home directory with the following content:
+
     ```bash
     #!/bin/bash
 
@@ -292,16 +307,17 @@ If the normal shortcut is used, ControllerBuddy will launch but the overlay will
         "$game_dir/$exe_file"
     ```
 
-2. Replace the placeholder `<APP_ID>` in the script with the actual **APP ID** obtained in step 6 of the main guide.
+1. Replace the placeholder `<APP_ID>` in the script with the actual **APP ID** obtained in step 6 of the main guide.
 
-3. Make the script executable:
+1. Make the script executable:
+
     ```sh
     chmod +x "$HOME/Fighters_Anthology.sh"
     ```
 
-4. Add the `Fighters_Anthology.sh` launch script as a Non-Steam game to your Steam library.
+1. Add the `Fighters_Anthology.sh` launch script as a Non-Steam game to your Steam library.
 
-5. Rename the **Fighters_Anthology.sh** Steam shortcut to **Jane's Fighters Anthology (Gaming Mode)**.
+1. Rename the **Fighters_Anthology.sh** Steam shortcut to **Jane's Fighters Anthology (Gaming Mode)**.
 
 > [!IMPORTANT]
 > The other Steam shortcut must not be deleted, as this would also delete the Proton prefix.
@@ -323,8 +339,9 @@ There is a special ControllerBuddy Steam Input controller layout available which
 To use this layout:
 
 1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
+
     ```sh
     xdg-open steam://controllerconfig/3259858387/3672925155
     ```
 
-2. Apply the layout to both **Jane's Fighters Anthology** shortcuts in your Steam library.
+1. Apply the layout to both **Jane's Fighters Anthology** shortcuts in your Steam library.

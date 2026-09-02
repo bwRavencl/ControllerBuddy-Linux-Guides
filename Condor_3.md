@@ -5,6 +5,7 @@
 This guide describes the installation of [Condor 3](https://www.condorsoaring.com/v3discover) for use with [ControllerBuddy](https://controllerbuddy.org) on Linux via the [Proton](https://github.com/ValveSoftware/Proton) compatibility layer.
 
 What you get with this setup:
+
 - An installation of Condor 3 that is nicely integrated into your Steam library.
 - ControllerBuddy will start automatically when you start the game, load the correct profile, and exit when you quit the game.
 
@@ -22,13 +23,14 @@ What you get with this setup:
 
 1. Add `CondorSetupV310.exe` as a Non-Steam game.
 
-2. Rename the **CondorSetupV310.exe** Steam shortcut to **Condor 3**.
+1. Rename the **CondorSetupV310.exe** Steam shortcut to **Condor 3**.
 
-3. Select **Proton 11.0** as compatibility tool.
+1. Select **Proton 11.0** as compatibility tool.
 
-4. Launch the **Condor** Steam shortcut and immediately exit the installer so that the Proton prefix gets created. ()
+1. Launch the **Condor** Steam shortcut and immediately exit the installer so that the Proton prefix gets created. ()
 
-5. Obtain the `APP_ID` of the Proton prefix:
+1. Obtain the `APP_ID` of the Proton prefix:
+
     ```sh
     export APP_ID=$(flatpak run com.github.Matoking.protontricks -l \
         | grep "^Non-Steam shortcut: Condor 3 ([0-9]\+)$" \
@@ -40,9 +42,10 @@ What you get with this setup:
 > [!IMPORTANT]
 > All subsequent commands must be executed within the same shell session to retain the `APP_ID` environment variable.
 
-6. Make sure all your game controllers are connected.
+1. Make sure all your game controllers are connected.
 
-7. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
+1. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
+
     ```sh
     reg_file=$(mktemp -p '' joysticks-XXXX.reg) &&
     python3 - <<'EOF' "$reg_file" &&
@@ -158,54 +161,62 @@ What you get with this setup:
     rm -f "$reg_file"
     ```
 
-8. Install **powershell** into the Proton prefix:
+1. Install **powershell** into the Proton prefix:
+
     ```sh
     flatpak run com.github.Matoking.protontricks "$APP_ID" powershell
     ```
 
 > [!IMPORTANT]
 > In the following step the placeholders denoted by `<...>` must be replaced accordingly to the following table:
+>
 > | Placeholder | Description                                     |
 > |-------------|-------------------------------------------------|
 > | `<USER>`    | Your username                                   |
 > | `<APP_ID>`  | The Proton prefix **APP ID** obtained in step 6 |
 
-9. Use a Windows VM to botain an installation of Condor 3 with `CondorSetupV310.exe` and copy the `Condor3` from the VM into `/home/<USER>/.local/share/Steam/steamapps/compatdata/<APP_ID>/pfx/drive_c`
+1. Use a Windows VM to botain an installation of Condor 3 with `CondorSetupV310.exe` and copy the `Condor3` from the VM into `/home/<USER>/.local/share/Steam/steamapps/compatdata/<APP_ID>/pfx/drive_c`
 
 > [!IMPORTANT]
 > In the following step the placeholders denoted by `<...>` must be replaced accordingly to the following table:
+>
 > | Placeholder | Description                                     |
 > |-------------|-------------------------------------------------|
 > | `<USER>`    | Your username                                   |
 > | `<APP_ID>`  | The Proton prefix **APP ID** obtained in step 6 |
 
-10. Update the **Condor 3** Steam shortcut as follows:
+1. Update the **Condor 3** Steam shortcut as follows:
 
     **TARGET**:
-    ```
+
+    ```text
     "/home/<USER>/.local/share/Steam/steamapps/compatdata/<APP_ID>/pfx/drive_c/Condor3/Condor.exe"
     ```
 
     **START IN**:
-    ```
+
+    ```text
     "/home/<USER>/.local/share/Steam/steamapps/compatdata/<APP_ID>/pfx/drive_c/Condor3"
     ```
 
     **LAUNCH OPTIONS**:
+
     ```sh
     "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/Condor_3.json -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
     ```
 
-11. Launch **Condor 3**, create a pilot, and immediately exit.
+1. Launch **Condor 3**, create a pilot, and immediately exit.
 
-12. Make sure your game controller is still connected.
+1. Make sure your game controller is still connected.
 
-13. Launch ControllerBuddy, and start local run mode to initialize the UINPUT joystick device:
+1. Launch ControllerBuddy, and start local run mode to initialize the UINPUT joystick device:
+
     ```sh
     flatpak run de.bwravencl.ControllerBuddy -autostart local &
     ```
 
-14. Configure Condor 3 to work with the [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+1. Configure Condor 3 to work with the [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+
     ```sh
     controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
     cd "$controller_buddy_profiles_dir/configs/Condor_3" &&
@@ -219,6 +230,7 @@ The configuration script must be run again whenever the ControllerBuddy-Profiles
 1. Make sure your game controller is connected.
 
 2. Execute the following command (steps 5, 13, and 14 combined):
+
     ```sh
     export APP_ID=$(flatpak run com.github.Matoking.protontricks -l \
         | grep "^Non-Steam shortcut: Condor 3 ([0-9]\+)$" \
@@ -238,6 +250,7 @@ To allow launching Condor 3 with ControllerBuddy from the Steam Deck's Gaming Mo
 If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
 1. Create a new text file named `Condor_3.sh` in your home directory with the following content:
+
     ```bash
     #!/bin/bash
 
@@ -285,6 +298,7 @@ If the normal shortcut is used, ControllerBuddy will launch but the overlay will
 2. Replace the placeholder `<APP_ID>` in the script with the actual **APP ID** obtained in step 6 of the main guide.
 
 3. Make the script executable:
+
     ```sh
     chmod +x "$HOME/Condor_3.sh"
     ```
@@ -313,11 +327,12 @@ There is a special ControllerBuddy Steam Input controller layout available which
 To use this layout:
 
 1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
+
     ```sh
     xdg-open steam://controllerconfig/3259858387/3672925155
     ```
 
-2. Apply the layout to both **Condor 3** shortcuts in your Steam library.
+1. Apply the layout to both **Condor 3** shortcuts in your Steam library.
 
 ## 💡 Additional Hints
 
@@ -335,13 +350,15 @@ To join multiplayer servers, a few manual steps are required:
 
 > [!IMPORTANT]
 > In the following step the placeholders denoted by `<...>` must be replaced accordingly to the following table:
+>
 > | Placeholder | Description                                                |
 > |-------------|------------------------------------------------------------|
 > | `<URL>`     | The URL copied from the "Join" button in the previous step |
 
-2. Use the following command to decode the IP address and port from the URL and copy it to the clipboard:
+1. Use the following command to decode the IP address and port from the URL and copy it to the clipboard:
+
     ```sh
     echo <URL> | tr ABCDFHJLMRSZ 03162897.5:4
     ```
 
-3. Launch Condor 3, open the multiplayer menu, and paste the decoded IP address and port into the "Direct Connect" field to join the server.
+1. Launch Condor 3, open the multiplayer menu, and paste the decoded IP address and port into the "Direct Connect" field to join the server.

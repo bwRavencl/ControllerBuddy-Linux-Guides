@@ -5,6 +5,7 @@
 This guide describes the installation of Strike Fighters, Wings Over Vietnam, Wings Over Europe, and Wings Over Israel for use with [ControllerBuddy](https://controllerbuddy.org) on Linux via the [Proton](https://github.com/ValveSoftware/Proton) compatibility layer.
 
 What you get with this setup:
+
 - An installation of your chosen game that is nicely integrated into your Steam library.
 - ControllerBuddy will start automatically when you start the game, load the correct profile, and exit when you quit the game.
 
@@ -22,13 +23,14 @@ What you get with this setup:
 
 1. Add `Setup.exe` as a Non-Steam game.
 
-2. Rename the **setup.exe** Steam shortcut to **Strike Fighters**, **Wings Over Vietnam**, **Wings Over Europe**, or **Wings Over Israel** accordingly.
+1. Rename the **setup.exe** Steam shortcut to **Strike Fighters**, **Wings Over Vietnam**, **Wings Over Europe**, or **Wings Over Israel** accordingly.
 
-3. Select **Proton 9.0-4** as compatibility tool.
+1. Select **Proton 9.0-4** as compatibility tool.
 
-4. Launch the game Steam shortcut and install the game.
+1. Launch the game Steam shortcut and install the game.
 
-5. Obtain the `APP_ID` of the Proton prefix:
+1. Obtain the `APP_ID` of the Proton prefix:
+
     ```sh
     flatpak run com.github.Matoking.protontricks -l
     ```
@@ -36,7 +38,8 @@ What you get with this setup:
 > [!IMPORTANT]
 > Replace `<APP_ID>` with the actual APP ID obtained in this step.
 
-6. Set the `APP_ID` variable:
+1. Set the `APP_ID` variable:
+
     ```sh
     export APP_ID=<APP_ID>
     ```
@@ -45,19 +48,22 @@ What you get with this setup:
 > All subsequent commands must be executed within the same shell session to retain the `APP_ID` environment variable.
 > Replace `<APP_ID>` with the actual APP ID obtained in this step.
 
-7. Download and install the latest updates (Service Pack and 08.30.06 or September 2008 depending on the game) from [here](https://thirdwire.com/downloads_archive.htm):
+1. Download and install the latest updates (Service Pack and 08.30.06 or September 2008 depending on the game) from the [Third Wire Download Archive](https://thirdwire.com/downloads_archive.htm):
+
     ```sh
     flatpak run com.github.Matoking.protontricks -c 'wine <UPDATER>.exe' "$APP_ID"
     ```
 
-8. Install **directplay** and **powershell** into the Proton prefix:
+1. Install **directplay** and **powershell** into the Proton prefix:
+
     ```sh
     flatpak run com.github.Matoking.protontricks "$APP_ID" directplay powershell
     ```
 
-9. Make sure all your game controllers are connected.
+1. Make sure all your game controllers are connected.
 
-10. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
+1. Hide all game controllers from the Proton prefix, except for ControllerBuddy's UINPUT joystick device:
+
     ```sh
     reg_file=$(mktemp -p '' joysticks-XXXX.reg) &&
     python3 - <<'EOF' "$reg_file" &&
@@ -175,6 +181,7 @@ What you get with this setup:
 
 > [!IMPORTANT]
 > In the following steps the placeholders denoted by `<...>` must be replaced accordingly to the following table:
+>
 > | Placeholder     | Description                                     |
 > |-----------------|-------------------------------------------------|
 > | `<USER>`        | Your username                                   |
@@ -182,25 +189,29 @@ What you get with this setup:
 > | `<GAME_FOLDER>` | The path to the game's installation folder      |
 > | `<EXE>`         | The game's executable name                      |
 
-11. Configure the game to work with the `Strike_Fighters.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+1. Configure the game to work with the `Strike_Fighters.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+
     ```sh
     controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
     cp "$controller_buddy_profiles_dir/configs/Strike_Fighters/Default.ini" "$HOME/.local/share/Steam/steamapps/compatdata/$APP_ID/pfx/drive_c/<GAME_FOLDER>/Controls/"
     ```
 
-12. Update the Steam shortcut as follows:
+1. Update the Steam shortcut as follows:
 
     **TARGET**:
-    ```
+
+    ```text
     "/home/<USER>/.local/share/Steam/steamapps/compatdata/<APP_ID>/pfx/drive_c/<GAME_FOLDER>/<EXE>.exe"
     ```
 
     **START IN**:
-    ```
+
+    ```text
     "/home/<USER>/.local/share/Steam/steamapps/compatdata/<APP_ID>/pfx/drive_c/<GAME_FOLDER>"
     ```
 
     **LAUNCH OPTIONS**:
+
     ```sh
     "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/Strike_Fighters.json -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
     ```
@@ -213,6 +224,7 @@ To allow launching the game with ControllerBuddy from the Steam Deck's Gaming Mo
 If the normal shortcut is used, ControllerBuddy will launch but the overlay will not be visible.
 
 1. Create a new text file named `Strike_Fighters.sh` in your home directory with the following content:
+
     ```bash
     #!/bin/bash
 
@@ -257,16 +269,17 @@ If the normal shortcut is used, ControllerBuddy will launch but the overlay will
         "$game_dir/$exe_file"
     ```
 
-2. Replace the placeholders `<APP_ID>`, `<GAME_FOLDER>`, and `<EXE>` in the script with their respective values.
+1. Replace the placeholders `<APP_ID>`, `<GAME_FOLDER>`, and `<EXE>` in the script with their respective values.
 
-3. Make the script executable:
+1. Make the script executable:
+
     ```sh
     chmod +x "$HOME/Strike_Fighters.sh"
     ```
 
-4. Add the `Strike_Fighters.sh` launch script as a Non-Steam game to your Steam library.
+1. Add the `Strike_Fighters.sh` launch script as a Non-Steam game to your Steam library.
 
-5. Rename the **Strike_Fighters.sh** Steam shortcut to **Strike Fighters (Gaming Mode)**.
+1. Rename the **Strike_Fighters.sh** Steam shortcut to **Strike Fighters (Gaming Mode)**.
 
 > [!IMPORTANT]
 > The other Steam shortcut must not be deleted, as this would also delete the Proton prefix.
@@ -288,8 +301,9 @@ There is a special ControllerBuddy Steam Input controller layout available which
 To use this layout:
 
 1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
+
     ```sh
     xdg-open steam://controllerconfig/3259858387/3672925155
     ```
 
-2. Apply the layout to both **Strike Fighters** shortcuts in your Steam library.
+1. Apply the layout to both **Strike Fighters** shortcuts in your Steam library.

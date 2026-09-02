@@ -5,6 +5,7 @@
 This guide describes the setup of [Falcon 3.0](https://en.wikipedia.org/wiki/Falcon_3.0) (Steam) for use with [ControllerBuddy](https://controllerbuddy.org) on Linux via the [DOSBox Staging](https://www.dosbox-staging.org) emulator.
 
 What you get with this setup:
+
 - An installation of Falcon 3.0 that is nicely integrated into your Steam library.
 - ControllerBuddy will start automatically when you start the game, load the correct profile, and exit when you quit the game.
 
@@ -23,17 +24,20 @@ What you get with this setup:
 1. Download Falcon Gold in Steam.
 
 2. Create a folder which will hold a custom DOSBox config file and launch script for Falcon 3.0:
+
     ```sh
     mkdir "$HOME/Falcon_Gold"
     ```
 
 3. Configure Falcon Gold to work with the `Falcon_3.0.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+
     ```sh
     controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
     cp "$controller_buddy_profiles_dir/configs/Falcon_3.0/JOYSTICK.DEF" "$HOME/.local/share/Steam/steamapps/common/Falcon Gold/game/"
     ```
 
 4. Create the DOSBox config file:
+
     ```sh
     cat << 'EOF' > "$HOME/Falcon_Gold/dosbox_falcon_gold.conf"
     [sdl]
@@ -81,6 +85,7 @@ What you get with this setup:
     ```
 
 5. Create the launch script:
+
     ```sh
     cat << 'EOF' > "$HOME/Falcon_Gold/Falcon_Gold.sh" && chmod +x "$HOME/Falcon_Gold/Falcon_Gold.sh"
     #!/bin/bash
@@ -145,6 +150,7 @@ There is a special ControllerBuddy Steam Input controller layout available which
 To use this layout:
 
 1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
+
     ```sh
     xdg-open steam://controllerconfig/3259858387/3672925155
     ```
