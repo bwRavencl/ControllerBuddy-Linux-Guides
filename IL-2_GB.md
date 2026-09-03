@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file line-length -->
 # IL-2 Sturmovik: Great Battles with ControllerBuddy on Linux
 
 ## 📖 Description

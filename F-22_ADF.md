@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file line-length -->
 # F-22: Air Dominance Fighter with ControllerBuddy on Linux
 
 ## 📖 Description

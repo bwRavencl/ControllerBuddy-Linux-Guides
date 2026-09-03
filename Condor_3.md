@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file line-length -->
 # Condor 3 with ControllerBuddy on Linux
 
 ## 📖 Description

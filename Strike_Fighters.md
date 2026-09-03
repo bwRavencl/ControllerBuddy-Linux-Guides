@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file line-length -->
 # Strike Fighters / Wings Over Vietnam / Wings Over Europe / Wings Over Israel with ControllerBuddy on Linux
 
 ## 📖 Description

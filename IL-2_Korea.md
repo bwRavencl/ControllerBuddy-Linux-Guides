@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file line-length -->
 # Korea. IL-2 Series with ControllerBuddy on Linux
 
 ## 📖 Description

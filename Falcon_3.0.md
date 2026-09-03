@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file line-length -->
 # Falcon 3.0 with ControllerBuddy on Linux
 
 ## 📖 Description
