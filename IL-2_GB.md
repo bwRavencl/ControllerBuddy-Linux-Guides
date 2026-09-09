@@ -181,7 +181,7 @@ What you get with this setup:
 
 1. Update the **IL-2 Sturmovik: Great Battles** Steam shortcut as follows:
 
-    **LAUNCH OPTIONS**:
+    **Launch Options**:
 
     ```sh
     "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/IL-2_GB.json -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
