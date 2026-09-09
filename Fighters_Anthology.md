@@ -37,7 +37,7 @@ What you get with this setup:
 
 1. Rename the **setup.exe** Steam shortcut to **Jane's Fighters Anthology**.
 
-1. Select **Proton 11.0 (Beta)** as compatibility tool.
+1. Select **Proton 11.0** as compatibility tool.
 
 1. Launch the **Jane's Fighters Anthology** Steam shortcut and install Jane's Fighters Anthology.  
     During the setup, select "Full Install - Digital Music".
