@@ -112,7 +112,7 @@ On the Steam Deck, a custom launch script is required to run ControllerBuddy alo
     trap 'killall -q ControllerBuddy' EXIT
 
     timeout=15
-    cb_device_name="ControllerBuddy Joystick"
+    cb_device_name='ControllerBuddy Joystick'
 
     i=0
     while ! grep -q "$cb_device_name" /proc/bus/input/devices
