@@ -13,7 +13,7 @@ What you get with this setup:
 ## 🧩 Prerequisites
 
 - [Steam](https://steampowered.com) (distribution package)
-- [protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
+- [Protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 - [IL-2 Sturmovik: Great Battles Steam Release](https://store.steampowered.com/app/307960/IL2_Sturmovik_Battle_of_Stalingrad)
 

@@ -13,7 +13,7 @@ What you get with this setup:
 ## 🧩 Prerequisites
 
 - [Steam](https://steampowered.com) (distribution package)
-- [protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
+- [Protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 - Game installation media or installer (`Setup.exe`)
 

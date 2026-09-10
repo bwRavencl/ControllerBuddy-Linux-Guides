@@ -16,7 +16,7 @@ What you get with this setup:
 - [Steam](https://steampowered.com) (distribution package)
 - [Git](https://git-scm.com) (distribution package)
 - [ImageMagick](https://imagemagick.org) (distribution package)
-- [protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
+- [Protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 
 ## 🪜 Steps
