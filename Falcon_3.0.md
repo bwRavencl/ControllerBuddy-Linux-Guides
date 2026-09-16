@@ -13,7 +13,6 @@ What you get with this setup:
 ## 🧩 Prerequisites
 
 - [Steam](https://steampowered.com) (distribution package)
-- [DOSBox Staging Flatpak](https://flathub.org/en/apps/io.github.dosbox-staging)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 - [Falcon Gold Steam Release](https://store.steampowered.com/app/429520/Falcon_Gold)
 
@@ -24,23 +23,16 @@ What you get with this setup:
 
 1. Download Falcon Gold in Steam.
 
-2. Create a folder which will hold a custom DOSBox config file and launch script for Falcon 3.0:
+1. Create a folder which will hold a custom DOSBox config file:
 
     ```sh
-    mkdir "$HOME/Falcon_Gold"
+    mkdir "$HOME/Games/Falcon_Gold"
     ```
 
-3. Configure Falcon Gold to work with the `Falcon_3.0.json` profile from [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
+1. Create the DOSBox config file:
 
     ```sh
-    controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
-    cp "$controller_buddy_profiles_dir/configs/Falcon_3.0/JOYSTICK.DEF" "$HOME/.local/share/Steam/steamapps/common/Falcon Gold/game/"
-    ```
-
-4. Create the DOSBox config file:
-
-    ```sh
-    cat << 'EOF' > "$HOME/Falcon_Gold/dosbox_falcon_gold.conf"
+    cat << 'EOF' > "$HOME/Games/Falcon_Gold/dosbox_falcon_gold.conf"
     [sdl]
     fullscreen = true
     host_rate = sdi
@@ -85,59 +77,27 @@ What you get with this setup:
     EOF
     ```
 
-5. Create the launch script:
+> [!IMPORTANT]
+> The launch command in the following step ends with an optional argument `[mouse_sensitivity]`.
+> You can simply omit this argument, but if your mouse feels too sensitive, try appending a value like `0.3` to the command.
 
-    ```sh
-    cat << 'EOF' > "$HOME/Falcon_Gold/Falcon_Gold.sh" && chmod +x "$HOME/Falcon_Gold/Falcon_Gold.sh"
-    #!/bin/bash
+1. Update the **Falcon Gold** Steam shortcut as follows:
 
-    cb_profile=Falcon_3.0.json
-    dosbox_conf=dosbox_falcon_gold.conf
-    mouse_sensitivity=1.0
+    **Launch Options**:
 
-    cd "$(cd -- "$(dirname -- "$0")" &> /dev/null && pwd)" || exit
-
-    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile "/app/share/ControllerBuddy-Profiles/$cb_profile" -tray &
-
-    timeout=15
-    cb_device_name='ControllerBuddy Joystick'
-
-    i=0
-    while cb_joystick_device=$(awk -v RS='' "/Name=\"$cb_device_name\"/{match(\$0, /js[0-9]+/); print substr(\$0, RSTART, RLENGTH); exit}" /proc/bus/input/devices) && [ -z "$cb_joystick_device" ] && [ "$i" -lt "$timeout" ]
-    do
-        if ! pgrep -f 'flatpak-spawn --host /bin/bash -c FLATPAK_ID=de.bwravencl.ControllerBuddy' > /dev/null
-        then
-            (( i++ ))
-        fi
-        sleep 1
-    done
-
-    if [ -z "$cb_joystick_device" ]
-    then
-        zenity --error --text="Launch aborted because $cb_device_name wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500
-    else
-        SDL_JOYSTICK_DEVICE="/dev/input/$cb_joystick_device" \
-        SDL_MOUSE_RELATIVE_SPEED_SCALE="$mouse_sensitivity" \
-        flatpak run io.github.dosbox-staging -conf "$dosbox_conf"
-    fi
-
-    killall -q ControllerBuddy
-
-    EOF
+    ```text
+    IGNORE='%command%'; "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/dosbox-wrapper.sh" Falcon_3.0 "$HOME/Games/Falcon_Gold/dosbox_falcon_gold.conf" [mouse_sensitivity]
     ```
 
-6. Add the launch script (`$HOME/Falcon_Gold/Falcon_Gold.sh`) as a Non-Steam game to your Steam library.
-
-7. Rename the **Falcon_Gold.sh** Steam shortcut to **Falcon Gold (ControllerBuddy)**.
-
-8. Override the Steam **CONTROLLER** settings of the **Falcon Gold (ControllerBuddy)** shortcut settings to **Disable Steam Input**.
+1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **Falcon Gold** to ensure the controller will be detected by ControllerBuddy.  
+In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](#-steam-deck-specifics) section below.
 
 ## 🎮 Steam Deck Specifics
 
 ### Configure Touchpads
 
 > [!IMPORTANT]
-> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **Falcon Gold (ControllerBuddy)** shortcut to ensure the controller can be detected by ControllerBuddy.
+> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **Falcon Gold** shortcut to ensure the controller can be detected by ControllerBuddy.
 
 There is a special ControllerBuddy Steam Input controller layout available which configures the Steam Deck's touchpads to act as a mouse replacement.
 
@@ -156,4 +116,4 @@ To use this layout:
     xdg-open steam://controllerconfig/3259858387/3672925155
     ```
 
-2. Apply the layout to the **Falcon Gold (ControllerBuddy)** shortcut in your Steam library.
+2. Apply the layout to the **Falcon Gold** shortcut in your Steam library.

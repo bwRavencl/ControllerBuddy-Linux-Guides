@@ -13,7 +13,6 @@ What you get with this setup:
 ## 🧩 Prerequisites
 
 - [Steam](https://steampowered.com) (distribution package)
-- [Protontricks Flatpak](https://flathub.org/en/apps/com.github.Matoking.protontricks)
 - [ControllerBuddy Flatpak](https://github.com/bwRavencl/ControllerBuddy-Flatpak)
 - [F-22: Air Dominance Fighter Steam Release](https://store.steampowered.com/app/3146140/F22_Air_Dominance_Fighter)
 
@@ -26,134 +25,23 @@ What you get with this setup:
 
 1. Select **Proton 11.0** as compatibility tool.
 
-1. Launch and immediately exit **F-22: Air Dominance Fighter** so that the Proton prefix gets created.
-
-1. Export the `APP_ID` environment variable:
-
-    ```sh
-    export APP_ID=3146140
-    ```
-
-> [!IMPORTANT]
-> All subsequent commands must be executed within the same shell session to retain the `APP_ID` environment variable.
-
-1. Install **directplay** and **powershell** into the Proton prefix:
-
-    ```sh
-    flatpak run com.github.Matoking.protontricks "$APP_ID" directplay powershell
-    ```
-
-> [!IMPORTANT]
-> If you are running the game on a Steam Deck, you can skip the remaining steps of this section, and instead follow the instructions in the [Steam Deck Specifics](#-steam-deck-specifics) section below to set up a special launch script and ControllerBuddy layout for the Steam Deck.
-
-1. Make sure your game controller is still connected.
-
-1. Launch ControllerBuddy, and start local run mode to initialize the UINPUT joystick device:
-
-    ```sh
-    flatpak run de.bwravencl.ControllerBuddy -autostart local &
-    ```
-
-1. Configure F-22: Air Dominance Fighter to work with the [ControllerBuddy-Profiles](https://github.com/bwRavencl/ControllerBuddy-Profiles):
-
-    ```sh
-    controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
-    cd "$controller_buddy_profiles_dir/configs/F-22_ADF" &&
-    WINEDEBUG='-all' flatpak run --filesystem="$controller_buddy_profiles_dir" com.github.Matoking.protontricks -c 'wine pwsh Configure.ps1' "$APP_ID"
-    ```
-
 1. Update the **F-22: Air Dominance Fighter** Steam shortcut as follows:
 
     **Launch Options**:
 
-    ```sh
-    "${STEAM_RUNTIME}"/scripts/switch-runtime.sh --runtime='' -- flatpak run de.bwravencl.ControllerBuddy -autostart local -profile /app/share/ControllerBuddy-Profiles/F-22_ADF.json -tray & timeout=15; timeout "$timeout" bash -c 'until grep -q "ControllerBuddy Joystick" /proc/bus/input/devices ; do sleep 1 ; done' && %command% || { [ $? -eq 124 ] && zenity --error --text="Launch aborted because ControllerBuddy wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500 ; } ; killall -q ControllerBuddy
+    ```text
+    "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" F-22_ADF %command%
     ```
 
-## 🔄 Re-running the Configuration Script
-
-The configuration script must be run again whenever the ControllerBuddy-Profiles receive an update.
-
-1. Make sure your game controller is connected.
-
-1. Execute the following command (steps 4, 7, and 8 combined):
-
-    ```sh
-    export APP_ID=3146140
-    flatpak run de.bwravencl.ControllerBuddy -autostart local &
-    controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
-    cd "$controller_buddy_profiles_dir/configs/F-22_ADF" &&
-    WINEDEBUG='-all' flatpak run --filesystem="$controller_buddy_profiles_dir" com.github.Matoking.protontricks -c 'wine pwsh Configure.ps1' "$APP_ID"
-    ```
+1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **F-22: Air Dominance Fighter** to ensure the controller will be detected by ControllerBuddy.  
+In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](#-steam-deck-specifics) section below.
 
 ## 🎮 Steam Deck Specifics
-
-### Launch Script
-
-On the Steam Deck, a custom launch script is required to run ControllerBuddy alongside F-22: Air Dominance Fighter, since the configuration script needs to be run within the Steam Runtime environment to correctly determine the UUID of the ControllerBuddy UINPUT joystick device.
-
-1. Create the `F-22_ADF.sh` launch script in your home directory:
-
-    ```sh
-    cat << 'EOF' > "$HOME/F-22_ADF.sh" && chmod +x "$HOME/F-22_ADF.sh"
-    #!/bin/bash
-
-    SteamAppId=3146140
-    game_dir="$HOME/.local/share/Steam/steamapps/common/F22ADF"
-    exe_file=adfusa.exe
-    proton_version='Proton 11.0'
-    cb_profile=F-22_ADF.json
-
-    export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/root/"
-    export STEAM_COMPAT_DATA_PATH="$HOME/.local/share/Steam/steamapps/compatdata/$SteamAppId"
-
-    flatpak run de.bwravencl.ControllerBuddy -autostart local -profile "/app/share/ControllerBuddy-Profiles/$cb_profile" -tray &
-
-    trap 'killall -q ControllerBuddy' EXIT
-
-    timeout=15
-    cb_device_name='ControllerBuddy Joystick'
-
-    i=0
-    while ! grep -q "$cb_device_name" /proc/bus/input/devices
-    do
-        if ! pgrep -f 'flatpak-spawn --host /bin/bash -c FLATPAK_ID=de.bwravencl.ControllerBuddy' > /dev/null
-        then
-            (( i++ ))
-            if [ "$i" -ge "$timeout" ]
-            then
-                zenity --error --text="Launch aborted because $cb_device_name wasn't ready within $timeout seconds.\n\nCheck if your controller is connected." --width 500
-                exit 1
-            fi
-        fi
-        sleep 1
-    done
-
-    controller_buddy_profiles_dir=$(realpath -s "$(flatpak info -l de.bwravencl.ControllerBuddy)/../active/files/share/ControllerBuddy-Profiles") &&
-    cd "$controller_buddy_profiles_dir/configs" &&
-    "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
-        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
-        "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
-        "$HOME/.local/share/Steam/steamapps/common/$proton_version/proton" waitforexitandrun \
-        pwsh F-22_ADF\\Configure.ps1 &&
-    cd "$game_dir" &&
-    "$HOME/.local/share/Steam/ubuntu12_32/steam-launch-wrapper" -- \
-        "$HOME/.local/share/Steam/ubuntu12_32/reaper" SteamLaunch AppId="$SteamAppId" -- \
-        "$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point" --verb=waitforexitandrun -- \
-        "$HOME/.local/share/Steam/steamapps/common/$proton_version/proton" waitforexitandrun \
-        "$game_dir/$exe_file"
-
-    EOF
-    ```
-
-1. Add the `F-22_ADF.sh` launch script as a Non-Steam game to your Steam library.
-
-1. Rename the **F-22_ADF.sh** Steam shortcut to **F-22: Air Dominance Fighter (ControllerBuddy)**.
 
 ### Configure Touchpads
 
 > [!IMPORTANT]
-> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **F-22: Air Dominance Fighter (ControllerBuddy)** shortcut to ensure the controller can be detected by ControllerBuddy.
+> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **F-22: Air Dominance Fighter** shortcut to ensure the controller can be detected by ControllerBuddy.
 
 There is a special ControllerBuddy Steam Input controller layout available which configures the Steam Deck's touchpads to act as a mouse replacement.
 
@@ -172,4 +60,4 @@ To use this layout:
     xdg-open steam://controllerconfig/3259858387/3672925155
     ```
 
-1. Apply the **ControllerBuddy** layout to the **F-22: Air Dominance Fighter (ControllerBuddy)** shortcut in your Steam library.
+1. Apply the **ControllerBuddy** layout to the **F-22: Air Dominance Fighter** shortcut in your Steam library.
