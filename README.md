@@ -55,6 +55,32 @@ If a step is optional, it will be explicitly marked as such.
 Pay attention to the output of each command.
 Error messages can provide vital information regarding the success of each step.
 
+## 🎮 Steam Deck Specifics
+
+### Touchpad Configuration
+
+> [!IMPORTANT]
+> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least use the default Steam Input layout called **Gamepad With Camera Controls** to ensure the controller can be detected by ControllerBuddy.
+
+There is a special ControllerBuddy Steam Input controller layout available which configures the Steam Deck's touchpads to act as a mouse replacement.
+
+| Control              | Function           |
+|----------------------|--------------------|
+| Right Touchpad       | Move mouse cursor  |
+| Right Touchpad Click | Left mouse button  |
+| Left Touchpad Click  | Right mouse button |
+| Left Touchpad Y-Axis | Scroll up/down     |
+
+To use this layout:
+
+1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
+
+    ```sh
+    xdg-open steam://controllerconfig/3259858387/3672925155
+    ```
+
+2. Apply the layout to the respective game in your Steam library.
+
 ## ⚖️ License
 
 [CC0 1.0 Universal](LICENSE)

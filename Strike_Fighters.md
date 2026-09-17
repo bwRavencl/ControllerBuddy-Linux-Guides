@@ -85,31 +85,5 @@ What you get with this setup:
     "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" Strike_Fighters %command%
     ```
 
-1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **Strike Fighters** to ensure the controller will be detected by ControllerBuddy.  
-In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](#-steam-deck-specifics) section below.
-
-## 🎮 Steam Deck Specifics
-
-### Configure Touchpads
-
-> [!IMPORTANT]
-> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **Strike Fighters** shortcut to ensure the controller can be detected by ControllerBuddy.
-
-There is a special ControllerBuddy Steam Input controller layout available which configures the Steam Deck's touchpads to act as a mouse replacement.
-
-| Control              | Function           |
-|----------------------|--------------------|
-| Right Touchpad       | Move mouse cursor  |
-| Right Touchpad Click | Left mouse button  |
-| Left Touchpad Click  | Right mouse button |
-| Left Touchpad Y-Axis | Scroll up/down     |
-
-To use this layout:
-
-1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
-
-    ```sh
-    xdg-open steam://controllerconfig/3259858387/3672925155
-    ```
-
-1. Apply the layout to the **Strike Fighters** shortcut in your Steam library.
+1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for the shortcut to ensure the controller will be detected by ControllerBuddy.  
+In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](README.md#%EF%B8%8F-touchpad-configuration) section below.

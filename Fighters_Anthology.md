@@ -129,38 +129,4 @@ What you get with this setup:
     ```
 
 1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **Jane's Fighters Anthology** to ensure the controller will be detected by ControllerBuddy.  
-In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](#-steam-deck-specifics) section below.
-
-1. Launch the **Jane's Fighters Anthology** Steam shortcut and configure the controls according to the screenshots:
-
-    ![Joystick](https://github.com/bwRavencl/ControllerBuddy-Profiles/raw/50ee366f48afca39497791a1b7b297a836ca7aaf/configs/Fighters_Anthology/joystick.png)
-
-    ![Rudder](https://github.com/bwRavencl/ControllerBuddy-Profiles/raw/50ee366f48afca39497791a1b7b297a836ca7aaf/configs/Fighters_Anthology/rudder.png)
-
-    ![Throttle](https://github.com/bwRavencl/ControllerBuddy-Profiles/raw/50ee366f48afca39497791a1b7b297a836ca7aaf/configs/Fighters_Anthology/throttle.png)
-
-## 🎮 Steam Deck Specifics
-
-### Configure Touchpads
-
-> [!IMPORTANT]
-> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **Jane's Fighters Anthology** shortcut to ensure the controller can be detected by ControllerBuddy.
-
-There is a special ControllerBuddy Steam Input controller layout available which configures the Steam Deck's touchpads to act as a mouse replacement.
-
-| Control              | Function           |
-|----------------------|--------------------|
-| Right Touchpad       | Move mouse cursor  |
-| Right Touchpad Click | Left mouse button  |
-| Left Touchpad Click  | Right mouse button |
-| Left Touchpad Y-Axis | Scroll up/down     |
-
-To use this layout:
-
-1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
-
-    ```sh
-    xdg-open steam://controllerconfig/3259858387/3672925155
-    ```
-
-1. Apply the layout to the **Jane's Fighters Anthology** shortcut in your Steam library.
+In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](README.md#%EF%B8%8F-touchpad-configuration) section below.

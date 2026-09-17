@@ -70,37 +70,11 @@ What you get with this setup:
     ```
 
 1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **Condor 3** to ensure the controller will be detected by ControllerBuddy.  
-In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](#-steam-deck-specifics) section below.
+In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](README.md#%EF%B8%8F-touchpad-configuration) section below.
 
 1. Launch **Condor 3**, ignore the warning about the configuration script failure, create a pilot, and immediately exit.
 
 1. Launch **Condor 3** a second time, this time the configuration script should succeed.
-
-## 🎮 Steam Deck Specifics
-
-### Configure Touchpads
-
-> [!IMPORTANT]
-> Since the Steam Deck's controller hardware is exposed to games via Steam Input, even if you do not care for the touchpad controls, you must at least apply the default Steam Input layout called **Gamepad With Camera Controls** to the **Condor 3** shortcut to ensure the controller can be detected by ControllerBuddy.
-
-There is a special ControllerBuddy Steam Input controller layout available which configures the Steam Deck's touchpads to act as a mouse replacement.
-
-| Control              | Function           |
-|----------------------|--------------------|
-| Right Touchpad       | Move mouse cursor  |
-| Right Touchpad Click | Left mouse button  |
-| Left Touchpad Click  | Right mouse button |
-| Left Touchpad Y-Axis | Scroll up/down     |
-
-To use this layout:
-
-1. Add the **ControllerBuddy** Steam Input layout to your Steam controller layouts:
-
-    ```sh
-    xdg-open steam://controllerconfig/3259858387/3672925155
-    ```
-
-1. Apply the layout to the **Condor 3** shortcut in your Steam library.
 
 ## 💡 Additional Hints
 

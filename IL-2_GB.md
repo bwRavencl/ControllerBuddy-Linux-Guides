@@ -33,4 +33,5 @@ What you get with this setup:
     "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" IL-2_GB %command%
     ```
 
-1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **IL-2 Sturmovik: Battle of Stalingrad** to ensure the controller will be detected by ControllerBuddy.
+1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **IL-2 Sturmovik: Battle of Stalingrad** to ensure the controller will be detected by ControllerBuddy.  
+In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](README.md#%EF%B8%8F-touchpad-configuration) section below.

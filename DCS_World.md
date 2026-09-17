@@ -86,7 +86,8 @@ What you get with this setup:
 > This variable only affects Mesa GPU drivers.  
 > The 8000 MB limit is optimized for a 16 GB VRAM card - scale this number up or down to match your own graphics card's memory.
 
-1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **DCS World** to ensure the controller will be detected by ControllerBuddy.
+1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **DCS World** to ensure the controller will be detected by ControllerBuddy.  
+In case of the Steam Deck, apply the special ControllerBuddy layout instead as described in the [Steam Deck Specifics](README.md#%EF%B8%8F-touchpad-configuration) section below.
 
 1. Launch the **DCS World** Steam shortcut to download and install your modules.
 
