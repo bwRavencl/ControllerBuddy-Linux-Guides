@@ -30,7 +30,7 @@ What you get with this setup:
     **Launch Options**:
 
     ```text
-    "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" F-22_ADF %command%
+    "$(steam-runtime-launch-client --host -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" F-22_ADF %command%
     ```
 
 1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **F-22: Air Dominance Fighter** to ensure the controller will be detected by ControllerBuddy.  

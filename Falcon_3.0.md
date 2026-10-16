@@ -86,7 +86,7 @@ What you get with this setup:
     **Launch Options**:
 
     ```text
-    IGNORE='%command%'; "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/dosbox-wrapper.sh" Falcon_3.0 "$HOME/Games/Falcon_Gold/dosbox_falcon_gold.conf" [mouse_sensitivity]
+    IGNORE='%command%'; "$(steam-runtime-launch-client --host -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/dosbox-wrapper.sh" Falcon_3.0 "$HOME/Games/Falcon_Gold/dosbox_falcon_gold.conf" [mouse_sensitivity]
     ```
 
 1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **Falcon Gold** to ensure the controller will be detected by ControllerBuddy.  

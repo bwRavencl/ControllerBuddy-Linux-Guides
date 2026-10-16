@@ -66,7 +66,7 @@ What you get with this setup:
     **LAUNCH OPTIONS**:
 
     ```sh
-    "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" Condor_3 %command%
+    "$(flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" Condor_3 %command%
     ```
 
 1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **Condor 3** to ensure the controller will be detected by ControllerBuddy.  

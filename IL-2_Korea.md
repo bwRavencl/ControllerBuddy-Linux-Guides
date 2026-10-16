@@ -30,7 +30,7 @@ What you get with this setup:
     **Launch Options**:
 
     ```sh
-   "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" IL-2_Korea %command%
+   "$(steam-runtime-launch-client --host -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" IL-2_Korea %command%
     ```
 
 1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **Korea. IL-2 Series** to ensure the controller will be detected by ControllerBuddy.  

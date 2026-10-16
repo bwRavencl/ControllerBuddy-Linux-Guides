@@ -78,7 +78,7 @@ What you get with this setup:
     **LAUNCH OPTIONS**:
 
     ```sh
-    override_vram_size=8000 CONTROLLER_BUDDY_PROFILES_DIR=/app/share/ControllerBuddy-Profiles WINE_SIMULATE_WRITECOPY=1 WINEDLLOVERRIDES='wbemprox=n' "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" DCS_Su-27 %command%
+    override_vram_size=8000 CONTROLLER_BUDDY_PROFILES_DIR=/app/share/ControllerBuddy-Profiles WINE_SIMULATE_WRITECOPY=1 WINEDLLOVERRIDES='wbemprox=n' "$(flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" DCS_Su-27 %command%
     ```
 
 > [!NOTE]

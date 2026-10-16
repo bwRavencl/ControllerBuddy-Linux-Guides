@@ -82,7 +82,7 @@ What you get with this setup:
     **LAUNCH OPTIONS**:
 
     ```sh
-    "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" Strike_Fighters %command%
+    "$(flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" Strike_Fighters %command%
     ```
 
 1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for the shortcut to ensure the controller will be detected by ControllerBuddy.  

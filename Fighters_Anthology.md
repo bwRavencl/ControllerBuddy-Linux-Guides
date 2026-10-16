@@ -125,7 +125,7 @@ What you get with this setup:
     **LAUNCH OPTIONS**:
 
     ```sh
-    "$("$STEAM_RUNTIME"/scripts/switch-runtime.sh --runtime='' -- flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" Fighters_Anthology %command%
+    "$(flatpak info -l de.bwravencl.ControllerBuddy)/files/share/proton-wrapper.sh" Fighters_Anthology %command%
     ```
 
 1. If you are using a controller that requires Steam Input, select the **Gamepad With Camera Controls** layout for **Jane's Fighters Anthology** to ensure the controller will be detected by ControllerBuddy.  
