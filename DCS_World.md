@@ -1,4 +1,5 @@
 <!-- markdownlint-disable-file line-length -->
+
 # DCS World with ControllerBuddy on Linux
 
 ## 📖 Description
